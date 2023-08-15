@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('set null');
 
+            $table->unsignedBigInteger('producto_id')->nullable();
 
             $table->timestamps();
         });

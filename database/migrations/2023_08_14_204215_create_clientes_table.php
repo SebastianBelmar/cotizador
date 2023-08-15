@@ -13,19 +13,15 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-
-            $table->string('nombre');
-            $table->string('apellidos');
+            $table->string('name');
+            $table->string('last_name');
             $table->string('email');
-            $table->integer('telefono');
-            $table->string('direccion');
-            $table->string('ciudad');
-
-            $table->unsignedBigInteger('user_id')->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedInteger('phone');
+            $table->string('address');
+            $table->string('city');
 
             $table->timestamps();
+
         });
     }
 
