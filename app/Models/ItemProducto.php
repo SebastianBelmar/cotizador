@@ -10,7 +10,7 @@ class ItemProducto extends Model
 {
     use HasFactory;
 
-    public function profile()
+    public function cotizacione()
     {
         return $this->belongsTo(Cotizacione::class);
     }

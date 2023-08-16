@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('cotizacione_id')->unique();
+            $table->unsignedBigInteger('cotizacione_id');
             $table->foreign('cotizacione_id')->references('id')->on('cotizaciones')->onDelete('cascade');
         });
     }

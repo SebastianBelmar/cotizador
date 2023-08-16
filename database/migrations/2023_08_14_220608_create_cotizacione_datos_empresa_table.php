@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('cotizacione_datos_empresa', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('cotizacione_id')->unique();
+            $table->unsignedBigInteger('cotizacione_id');
             $table->foreign('cotizacione_id')->references('id')->on('cotizaciones')->onDelete('cascade');
 
-            $table->unsignedBigInteger('datos_empresa_id')->unique();
+            $table->unsignedBigInteger('datos_empresa_id');
             $table->foreign('datos_empresa_id')->references('id')->on('datos_empresas')->onDelete('cascade');
 
             $table->timestamps();

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('cotizacione_detalles_termino', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('cotizacione_id')->unique();
+            $table->unsignedBigInteger('cotizacione_id');
             $table->foreign('cotizacione_id')->references('id')->on('cotizaciones')->onDelete('cascade');
 
-            $table->unsignedBigInteger('detalles_termino_id')->unique();
+            $table->unsignedBigInteger('detalles_termino_id');
             $table->foreign('detalles_termino_id')->references('id')->on('detalles_terminos')->onDelete('cascade');
 
             $table->timestamps();

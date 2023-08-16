@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Cotizacion;
+use App\Models\Cotizacione;
 
 class DetallesTermino extends Model
 {
     use HasFactory;
 
-    public function cotizaciones() {
-        return $this->hasMany(Cotizacion::class);
+    public function cotizacione() {
+        return $this->belongsToMany(Cotizacione::class);
     }
 }

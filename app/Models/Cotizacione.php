@@ -12,24 +12,19 @@ class Cotizacione extends Model
 {
     use HasFactory;
 
-    public function clientes()
+    public function cliente()
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function item_productos()
+    public function datos_empresa()
     {
-        return $this->hasMany(ItemProducto::class);
+        return $this->belongsToMany(DatosEmpresa::class);
     }
 
-    public function datos_empresas()
-    {
-        return $this->hasMany(DatosEmpresa::class);
-    }
-
-    public function detalles_terminos()
+    public function detalles_termino()
     {
         // se puede usar de las dos formas '' o con objeto
-        return $this->hasMany('App\Models\DetallesTermino');
+        return $this->belongsToMany('App\Models\DetallesTermino');
     }
 }
