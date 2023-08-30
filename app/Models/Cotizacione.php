@@ -17,6 +17,10 @@ class Cotizacione extends Model
         return $this->belongsTo(Cliente::class);
     }
 
+    public function item_producto() {
+        return $this->hasMany(ItemProducto::class);
+    }
+
     public function datos_empresa()
     {
         return $this->belongsToMany(DatosEmpresa::class);

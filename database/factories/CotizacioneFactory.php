@@ -23,6 +23,7 @@ class CotizacioneFactory extends Factory
             'descuento' => $this->faker->randomFloat(2, 1000, 5000),
             'user_id' => User::all()->random()->id,
             'cliente_id' => Cliente::all()->random()->id,
+            'status'=> $this->faker->randomElement([ 1, 2 ])
         ];
     }
 }

@@ -2,27 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\CotizacioneController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CotizacioneController::class, 'index'])->name('cotizaciones.index');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::get('cotizaciones/{cotizacion}', [CotizacioneController::class, 'show'])->name('cotizaciones.show');
+
+Route::get('producto/{producto}', [CotizacioneController::class, 'producto'])->name('cotizaciones.producto');
+
+
+
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');});

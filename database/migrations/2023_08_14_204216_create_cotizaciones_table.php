@@ -24,6 +24,8 @@ return new class extends Migration
 
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('set null');
 
+            $table->enum('status', [1, 2])->default(1);
+
             $table->timestamps();
         });
     }
