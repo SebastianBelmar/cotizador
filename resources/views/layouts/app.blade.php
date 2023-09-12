@@ -27,6 +27,7 @@
             
             @livewire('navigation')
          
+            @livewire('admin.create-bill')
             <!-- Page Content  -->
             <main>
                 {{ $slot }}

@@ -73,9 +73,11 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
         ]);
 
+
+
         $producto->update($request->all());
 
-        return redirect()->route('admin.productos.edit', $producto)->with('info', 'El producto se actualizó con éxito');
+        return redirect()->route('admin.productos.edit', compact('producto'))->with('info', "El producto se actualizó con éxito");
     }
 
     /**

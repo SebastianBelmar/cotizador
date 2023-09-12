@@ -12,6 +12,8 @@ class Cotizacione extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['fecha', 'descuento', 'user_id', 'cliente_id', 'status'];
+
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);

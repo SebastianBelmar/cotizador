@@ -324,9 +324,10 @@ return [
             'active' => ['admin/productos*']
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'cotizaciones',
+            'route'  => 'admin.cotizaciones.index',
+            'icon' => 'fas fa-fw fa-columns',
+            'active' => ['admin/cotizaciones*']
         ],
         [
             'text'    => 'multilevel',
