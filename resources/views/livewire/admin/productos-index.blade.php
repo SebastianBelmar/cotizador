@@ -31,7 +31,7 @@
                                 <td>{{$producto->id}}</td>
                                 <td>{{$producto->name}}</td>
                                 <td width=10px>
-                                    <a href="{{route('admin.productos.edit', $producto, $hola)}}" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="{{route('admin.productos.edit', $producto)}}" class="btn btn-primary btn-sm">Editar</a>
                                 </td>
                                 <td width=10px>
                                     <form action="{{route('admin.productos.destroy', $producto)}}" method="POST">

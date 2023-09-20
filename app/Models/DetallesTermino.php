@@ -10,6 +10,8 @@ class DetallesTermino extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function cotizacione() {
         return $this->belongsToMany(Cotizacione::class);
     }

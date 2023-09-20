@@ -330,6 +330,12 @@ return [
             'active' => ['admin/cotizaciones*']
         ],
         [
+            'text' => 'bills',
+            'route'  => 'admin.bills.index',
+            'icon' => 'fas fa-fw fa-columns',
+            'active' => ['admin/bills*']
+        ],
+        [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [

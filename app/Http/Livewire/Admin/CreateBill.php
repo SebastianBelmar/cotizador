@@ -16,7 +16,7 @@ class CreateBill extends Component
 
     public function mount()
     {
-        $this->date = Carbon::now()->addDays(10)->toDateString();;
+        $this->date = Carbon::now()->addDays(10)->toDateString();
     }
 
     public $fecha, $descuento , $status = 1;
@@ -35,7 +35,7 @@ class CreateBill extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function save() {
+    public function update() {
 
         $this->validate();
 

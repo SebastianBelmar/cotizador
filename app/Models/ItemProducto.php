@@ -9,6 +9,8 @@ use App\Models\Cotizacione;
 class ItemProducto extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [];
 
     public function cotizacione()
     {

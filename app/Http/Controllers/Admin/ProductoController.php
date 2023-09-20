@@ -73,8 +73,6 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
         ]);
 
-
-
         $producto->update($request->all());
 
         return redirect()->route('admin.productos.edit', compact('producto'))->with('info', "El producto se actualizó con éxito");
@@ -85,6 +83,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+        dd($producto);
         $producto->delete();
 
         return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');

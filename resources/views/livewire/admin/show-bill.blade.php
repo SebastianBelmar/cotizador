@@ -89,9 +89,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ $cotizacion->fecha }}</div>
                                 </td>
+
+
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $cotizacion->cliente->name }}</div>
-                                </td>
+                                    <div class="text-sm text-gray-900">{{ $cotizacion->cliente_id}}</div>
+                                </td> 
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ $cotizacion->user_id }}</div>
                                 </td>
