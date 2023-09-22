@@ -21,6 +21,10 @@ class CreateBill extends Component
 
     public $date, $user_id, $fecha, $cliente_id = null , $descuento , $status = 1;
 
+    public $code = 100, $name = '', $lenght, $width, $quantity, $price = 0;
+
+    public $total = 0;
+
     protected $listeners = ['render', 'create'];
 
     public $conjuntoReglas;
@@ -74,14 +78,13 @@ class CreateBill extends Component
     {
     }
 
-
-
-    public $code = 100, $name = 'nulo', $lenght = 0, $width = 0, $quantity = 0, $price = 0;
-
-    public $total = 0;
-
     public function calcular () {
-        $this->price = $this->width * $this->lenght * $this->quantity * Producto::where('code', $this->code)->value('price');
+        
+        $producto = Producto::where('code', $this->code)->value('price');
+
+        if (is_numeric($this->width) && is_numeric($this->lenght) && is_numeric($this->quantity)) {
+            $this->price = $this->width * $this->lenght * $this->quantity * $producto;
+        }
     }
 
     public function createItem()
@@ -132,8 +135,6 @@ class CreateBill extends Component
 
         return view('livewire.admin.bills.create-bill', compact('clientes', 'bill', 'items', 'productos'));
     }
-
-    public $aux;
 
     public function edit(ItemProducto $item) {
 

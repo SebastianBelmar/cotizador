@@ -37,12 +37,15 @@ class EditItem extends Component
     }
 
     public function calcular () {
-        $this->validate();
+        $producto = Producto::where('code', $this->item->code)->value('price');
 
-        $this->precio = $this->item->width * $this->item->lenght * $this->item->quantity * Producto::where('code', $this->item->code)->value('price');
-        $this->item->price = $this->precio;
-        //$this->emitTo('admin.bills.create-bill', 'render');
-        $this->emit('render');
+        if (is_numeric($this->item->width) && is_numeric($this->item->lenght) && is_numeric($this->item->quantity)) {
+            $this->precio = $this->item->width * $this->item->lenght * $this->item->quantity * $producto;
+            $this->item->price = $this->precio;
+            //$this->emitTo('admin.bills.create-bill', 'render');
+            $this->emit('render');
+        }
+
     }
 
     public function save() {

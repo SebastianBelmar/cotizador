@@ -46,11 +46,11 @@ class EditBill extends Component
 
     public function calcular () {
 
-        $this->conjuntoReglas = 'conjunto2';
+        $producto = Producto::where('code', $this->code)->value('price');
 
-        $this->validate();
-
-        $this->price = $this->width * $this->lenght * $this->quantity * Producto::where('code', $this->code)->value('price');
+        if (is_numeric($this->width) && is_numeric($this->lenght) && is_numeric($this->quantity)) {
+            $this->price = $this->width * $this->lenght * $this->quantity * $producto;
+        }
     }
 
     public function createItem()
@@ -102,6 +102,10 @@ class EditBill extends Component
         return redirect()->route('admin.bills.index')->with('info-success', 'Se actualizo correctamente el registro');
     }
 
+    public function delete (ItemProducto $item) {
+        $item->delete();
+    }
+    
     public function render()
     {
         $bill = $this->bill;

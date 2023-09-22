@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Cliente;
 use App\Models\Cotizacione;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -31,8 +32,24 @@ class IndexBills extends Component
                             ->paginate(10);
         }
 
+        $datos = Cliente::get();
 
-        return view('livewire.admin.index-bills', compact('cotizaciones'));
+        $clientes = [];
+
+        foreach ($datos as $dato) {
+            $clientes[$dato->id] = $dato->name;
+        }
+
+        $datos = User::get();
+
+        $usuarios = [];
+
+        foreach ($datos as $dato) {
+            $usuarios[$dato->id] = $dato->name;
+        }
+
+
+        return view('livewire.admin.index-bills', compact('cotizaciones', 'clientes', 'usuarios'));
     }
 
     public function create()
