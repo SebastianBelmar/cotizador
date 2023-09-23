@@ -47,7 +47,7 @@
 
                 <div class="mb-4">
                     <x-label value="Ancho [metros]"/>
-                    <x-input type="number" placeholder="Ancho" wire:model="item.width" class="w-full" wire:change="calcular()" />
+                    <x-input type="number" placeholder="Ancho" wire:model="item.width" class="w-full pl-10 pr-4 py-2" wire:change="calcular()" />
                     
                     <x-input-error for="item.width"/>
                 </div>

@@ -324,68 +324,62 @@
             <div class="p-1"></div>
 
             {{-- lista item  --}}
-            <div class="card">
-
-                <div class="card-body bg-gray">
-
-                    @if($items->count())
-                    {{-- para una coleccion $cotizaciones->count() --}}
-                        <table class="table table-striped">
-                            <thead class="bg-gray-500">
-                                <tr>
-                                    <th scope="col" class="w-20 px-8 py-4 text-left text-sm font-medium text-gray-100 uppercase pointer">
-                                        CODE
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg rounded-xl border border-gray-300 bg-gray-100">
+                <table class="w-full text-sm text-left text-gray-100 dark:text-gray-100 border-none">
+                    <thead class="text-xs text-gray-100 uppercase bg-gray-50 dark:bg-gray-500 dark:text-gray-100 border-none">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 border-none">
+                                Codigo
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-none">
+                                Descripcion
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-none">
+                                Cantidad
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-none">
+                                Precio
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-none">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @if($items->count())
+                            @foreach ($items as $item)
+                                <tr class="bg-white border-b dark:bg-gray-100 dark:border-gray-100">
+                                    <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowra border-r-0 border-l-0">
+                                        {{ $item->code }}
                                     </th>
-                                    <th scope="col" class="w-20 px-8 py-4 text-left text-sm font-medium text-gray-100 uppercase pointer">
-                                        Nombre
-                                    </th>
-                                    <th scope="col" class="w-20 px-8 py-4 text-left text-sm font-medium text-gray-100 uppercase pointer">
-                                                       
-                                        Cantidad
-                                    </th>
-                                    <th scope="col" class="w-20 px-8 py-4 text-left text-sm font-medium text-gray-100 uppercase pointer">
-                                        Precio
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($items as $item)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $item->code }}</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $item->name }}</div>
-                                        </td>
-        
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $item->quantity}}</div>
-                                        </td> 
+                                    <td class="px-6 py-4 border-r-0 border-l-0">
+                                        {{ $item->name }}
+                                    </td>
+                                    <td class="px-6 py-4 border-r-0 border-l-0">
+                                        {{ $item->quantity}}
+                                    </td>
+                                    <td class="px-6 py-4 border-r-0 border-l-0">
+                                        {{ $item->price}}
+                                    </td>
+                                    <td class="px-6 py-4 border-r-0 border-l-0">
 
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $item->price}}</div>
-                                        </td> 
-
-                                        <td width=10px class="d-flex justify-content-between">
-                                            {{-- con anidamiento --}}
+                                        <div class="flex">
                                             @livewire('admin.bills.edit-item', ['item' => $item], key($item->id))
-                                            {{-- sin anidamiento --}}
-                                            <a class="btn btn-secondary btn-sm mr-4" wire:click="edit({{$item}})">
-                                                <i class="fa fa-edit"></i>    
-                                            </a>
+
                                             <a class="btn btn-danger btn-sm mr-4" wire:click="delete({{$item}})">
                                                 <i class="fa fa-trash"></i>    
                                             </a>
-                                        </td>                     
-        
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
-            </div>
+                                        </div>
 
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+            <br>
             <div class="mb-4 ">
                 <x-label value="Descuento"/>
                 <x-input type="number" wire:model="descuento" placeholder="valor descuento" class="w-full bg-white" />    

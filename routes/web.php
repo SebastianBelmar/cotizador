@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BillController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CotizacioneController;
@@ -15,3 +16,9 @@ Route::get('producto/{producto}', [CotizacioneController::class, 'producto'])->n
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');});
+
+    Route::post('/cotizacion-pdf/{bill}', [BillController::class, 'mostrarPdf'])->name('cotizacion.pdf');
+
+    Route::post('/cotizacion-pdf-descargar/{bill}', [BillController::class, 'descargarPdf'])->name('cotizacion.pdf.descargar');
+
+    Route::post('/cotizacion-pdf-guardar/{bill}', [BillController::class, 'guardarPdf'])->name('cotizacion.pdf.guardar');

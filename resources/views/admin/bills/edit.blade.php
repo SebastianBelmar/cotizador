@@ -12,7 +12,6 @@
 
 @section('content')
     
-    {{$bill}}
     @livewire('admin.bills.edit-bill', ['bill' => $bill], key($bill->id))
 @stop
 

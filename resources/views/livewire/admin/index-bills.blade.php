@@ -23,7 +23,7 @@
 
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header overflow-x-auto">
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
@@ -32,7 +32,7 @@
                             <th>Fecha</th>
                             <th>ID cliente</th>
                             <th>ID usuario</th>
-                            <th>Acciones</th>
+                            <th colspan="3">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,8 +40,8 @@
                         <tr>
                             <td>{{$cotizacion->id}}</td>
                             <td>{{$cotizacion->fecha}}</td>
-                            <td>{{$cotizacion->cliente_id}}</td>
-                            <td>{{$cotizacion->user_id}}</td>
+                            <td>{{ $cotizacion->cliente_id ? $clientes[intval($cotizacion->cliente_id)] : ""}}</td>
+                            <td>{{$cotizacion->user_id ? $usuarios[intval($cotizacion->user_id)] : ""}}</td>
 
                             <td class="w-1">
                                 <a href="{{route('admin.bills.show', $cotizacion)}}" class="btn btn-secondary btn-sm">Mostrar</a>
@@ -51,7 +51,7 @@
                                 <a href="{{route('admin.bills.edit', $cotizacion)}}" class="btn btn-primary btn-sm">Editar</a>
                             </td>
 
-                            <td>
+                            <td class="w-1">
                                 <form action="{{route('admin.bills.destroy', $cotizacion)}}" method="POST">
                                     @csrf
                                     @method('delete')
