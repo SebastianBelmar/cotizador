@@ -312,18 +312,26 @@ return [
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
         ],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-users fa-fw',
+            'can'       =>   'admin.users.index'
+        ],
         ['header' => 'Administrador'],
         [
             'text' => 'productos',
             'route'  => 'admin.productos.index',
             'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/productos*']
+            'active' => ['admin/productos*'],
+            'can' =>  'admin.productos.index'
         ],
         [
-            'text' => 'bills',
+            'text' => 'cotizaciones',
             'route'  => 'admin.bills.index',
             'icon' => 'fas fa-fw fa-columns',
-            'active' => ['admin/bills*']
+            'active' => ['admin/bills*'],
+            'can' =>  'admin.bills.index'
         ],
     ],
 

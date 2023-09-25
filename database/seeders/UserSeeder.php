@@ -15,9 +15,9 @@ class UserSeeder extends Seeder
     {
 
         User::create([
-            'name' => 'name',
-            'last_name' => 'apellido',
-            'email' => 'email@email.com',
+            'name' => 'sebastian',
+            'last_name' => 'belmar',
+            'email' => 's.belmar01@ufromail.cl',
             'phone' => 96679437,
 
             'email_verified_at' => now(),
@@ -27,8 +27,23 @@ class UserSeeder extends Seeder
             'remember_token' => 1234567890,
             'profile_photo_path' => null,
             'current_team_id' => null,
-        ]);
+        ])->assignRole('Admin');
 
-        User::factory(10)->create();
+        User::create([
+            'name' => 'vendedor',
+            'last_name' => 'vendedor',
+            'email' => 'vendedor@gmail.com',
+            'phone' => 96679435,
+
+            'email_verified_at' => now(),
+            'password' => bcrypt(123456789), // password
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+            'remember_token' => 1234567890,
+            'profile_photo_path' => null,
+            'current_team_id' => null,
+        ])->assignRole('Seller');
+
+        User::factory(99)->create();
     }
 }

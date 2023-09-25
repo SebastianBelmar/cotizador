@@ -50,7 +50,7 @@
                             <td class="w-1">
                                 <a href="{{route('admin.bills.edit', $cotizacion)}}" class="btn btn-primary btn-sm">Editar</a>
                             </td>
-
+                            @can('admin.bills.destroy')
                             <td class="w-1">
                                 <form action="{{route('admin.bills.destroy', $cotizacion)}}" method="POST">
                                     @csrf
@@ -59,7 +59,7 @@
                                     <button type="submit" class="btn bg-red-500 btn-danger btn-sm">Eliminar</button>
                                 </form>
                             </td>
-        
+                            @endcan
         
                             </div>
         

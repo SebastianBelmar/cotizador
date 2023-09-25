@@ -11,9 +11,11 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class BillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.bills.destroy')->only('destroy');
+    }
+ 
     public function index()
     {
         return view('admin.bills.index');

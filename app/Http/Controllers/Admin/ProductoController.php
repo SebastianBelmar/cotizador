@@ -83,7 +83,6 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        dd($producto);
         $producto->delete();
 
         return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');
