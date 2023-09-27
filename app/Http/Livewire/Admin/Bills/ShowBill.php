@@ -34,6 +34,12 @@ class ShowBill extends Component
 
         $items = ItemProducto::where('cotizacione_id', $this->bill->id)->get();
 
+        $datos = $this->bill->datos_empresa()->first();
+
+        $cliente = Cliente::where('id', $this->bill->cliente_id)->first();
+
+        $detalles = $this->bill->detalles_termino;
+
         $total = 0;
 
         foreach ($items as $item)
@@ -44,7 +50,10 @@ class ShowBill extends Component
         $this->pdf = PDF::loadView('admin.bills.cotizacion', [
             'bill' => $this->bill,
             'items' => $items,
-            'total' => $total
+            'total' => $total,
+            'datos' => $datos,
+            'cliente' => $cliente,
+            'detalles' => $detalles,
         ]);
 
         $contenidoPDF = $this->pdf->output();

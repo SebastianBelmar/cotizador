@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 use App\Models\Cotizacione;
@@ -42,7 +43,13 @@ class BillController extends Controller
      */
     public function show(Cotizacione $bill)
     {
+        $datos = $bill->datos_empresa()->first();
+
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
+
+        $cliente = Cliente::where('id', $bill->cliente_id)->first();
+
+        $detalles = $bill->detalles_termino;
 
         $total = 0;
 
@@ -51,7 +58,7 @@ class BillController extends Controller
             $total += $item->price;
         }
 
-        return view('admin.bills.show', compact('bill', 'items', 'total'));
+        return view('admin.bills.show', compact('bill', 'items', 'total', 'datos', 'cliente', 'detalles'));
     }
 
     /**
@@ -85,6 +92,12 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
+        $datos = $bill->datos_empresa()->first();
+
+        $cliente = Cliente::where('id', $bill->cliente_id)->first();
+
+        $detalles = $bill->detalles_termino;
+
         $total = 0;
 
         foreach ($items as $item)
@@ -95,7 +108,10 @@ class BillController extends Controller
         $pdf = PDF::loadView('admin.bills.cotizacion', [
             'bill' => $bill,
             'items' => $items,
-            'total' => $total
+            'total' => $total,
+            'datos' => $datos,
+            'cliente' => $cliente,
+            'detalles' => $detalles,
         ]);
 
         return $pdf->stream();
@@ -105,6 +121,12 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
+        $datos = $bill->datos_empresa()->first();
+
+        $cliente = Cliente::where('id', $bill->cliente_id)->first();
+
+        $detalles = $bill->detalles_termino;
+
         $total = 0;
 
         foreach ($items as $item)
@@ -115,7 +137,10 @@ class BillController extends Controller
         $pdf = PDF::loadView('admin.bills.cotizacion', [
             'bill' => $bill,
             'items' => $items,
-            'total' => $total
+            'total' => $total,
+            'datos' => $datos,
+            'cliente' => $cliente,
+            'detalles' => $detalles,
         ]);
 
         return $pdf->download();
@@ -125,6 +150,12 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
+        $datos = $bill->datos_empresa()->first();
+
+        $cliente = Cliente::where('id', $bill->cliente_id)->first();
+
+        $detalles = $bill->detalles_termino;
+
         $total = 0;
 
         foreach ($items as $item)
@@ -135,7 +166,10 @@ class BillController extends Controller
         $pdf = PDF::loadView('admin.bills.cotizacion', [
             'bill' => $bill,
             'items' => $items,
-            'total' => $total
+            'total' => $total,
+            'datos' => $datos,
+            'cliente' => $cliente,
+            'detalles' => $detalles,
         ]);
 
         // Obtener el contenido del PDF como una cadena

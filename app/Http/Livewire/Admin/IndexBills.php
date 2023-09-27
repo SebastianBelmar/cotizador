@@ -54,14 +54,6 @@ class IndexBills extends Component
 
     public function create()
     {
-        Cotizacione::create([
-            'fecha' => Carbon::now(),
-            'descuento' => 0,
-            'user_id' => Auth::user()->id,
-            'cliente_id' => null,
-            'status'=> 2
-        ]);
-
         return redirect()->route('admin.bills.create');
     }
 }

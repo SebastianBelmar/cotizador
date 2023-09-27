@@ -33,28 +33,28 @@
                 
                 <div class="mb-4">
                     <x-label value="Descripcion"/>
-                    <x-input type="text" wire:model="item.name" placeholder="Descripcion" class="w-full" />    
+                    <x-input type="text" wire:model="item.name" placeholder="Descripcion text-left" class="w-full" />    
 
                     <x-input-error for="item.name"/>
                 </div>
 
                 <div class="mb-4">
                     <x-label value="Largo [metros]"/>
-                    <x-input type="number" wire:model="item.lenght" placeholder="Largo" class="w-full" placeholder="Ingresa un número" wire:change="calcular()" />    
+                    <x-input type="number" wire:model="item.lenght" placeholder="Largo" class="w-full text-left" placeholder="Ingresa un número" wire:change="calcular()" />    
     
                     <x-input-error for="item.lenght"/>
                 </div>
 
                 <div class="mb-4">
                     <x-label value="Ancho [metros]"/>
-                    <x-input type="number" placeholder="Ancho" wire:model="item.width" class="w-full pl-10 pr-4 py-2" wire:change="calcular()" />
+                    <x-input type="number" placeholder="Ancho" wire:model="item.width" class="w-full text-left" wire:change="calcular()" />
                     
                     <x-input-error for="item.width"/>
                 </div>
 
                 <div class="mb-4">
                     <x-label value="Cantidad"/>
-                    <x-input type="number" wire:model="item.quantity" wire:change="calcular()" placeholder="Cantidad" class="w-full" />
+                    <x-input type="number" wire:model="item.quantity" wire:change="calcular()" placeholder="Cantidad" class="w-full text-left" />
 
                     <x-input-error for="item.quantity"/>
                 </div>
