@@ -313,25 +313,45 @@ return [
             'icon'        => 'fas fa-tachometer-alt fa-fw',
         ],
         [
-            'text'        => 'Usuarios',
-            'route'         => 'admin.users.index',
-            'icon'        => 'fas fa-users fa-fw',
+            'text' => 'Cotizaciones',
+            'route'  => 'admin.bills.index',
+            'icon' => 'fas fa-fw fa-columns',
+            'active' => ['admin/bills*'],
+            'can' =>  'admin.bills.index'
+        ],
+        [
+            'text'        => 'Clientes',
+            'route'         => 'admin.clientes.index',
+            'icon'        => 'fas fa-user-tie fa-fw',
             'can'       =>   'admin.users.index'
         ],
         ['header' => 'Administrador'],
         [
-            'text' => 'productos',
+            'text' => 'Productos',
             'route'  => 'admin.productos.index',
             'icon' => 'fab fa-fw fa-buffer',
             'active' => ['admin/productos*'],
             'can' =>  'admin.productos.index'
         ],
         [
-            'text' => 'cotizaciones',
-            'route'  => 'admin.bills.index',
-            'icon' => 'fas fa-fw fa-columns',
-            'active' => ['admin/bills*'],
-            'can' =>  'admin.bills.index'
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-users fa-fw',
+            'can'       =>   'admin.users.index'
+        ],
+        [
+            'text' => 'Lista de roles',
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-users-cog fa-fw',
+            'active' => ['admin/roles*'],
+            'can' =>  'admin.roles.index'
+        ],
+        [
+            'text' => 'Datos Empresa',
+            'route'  => 'admin.datos-empresas.index',
+            'icon' => 'fas fa-building fa-fw',
+            'active' => ['admin/datos-empresas*'],
+            //'can' =>  'admin.datos-empresas.index'
         ],
     ],
 

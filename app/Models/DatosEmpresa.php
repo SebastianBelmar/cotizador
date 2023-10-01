@@ -10,7 +10,7 @@ class DatosEmpresa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['logo', 'name', 'address', 'city', 'website', 'phone', 'email', 'office_hours'];
+    protected $guarded = [];
 
     public function cotizacione() {
         return $this->belongsToMany(Cotizacione::class);

@@ -339,7 +339,7 @@
                                         <td class="px-6 py-4 border-r-0 border-l-0">
     
                                             <div class="flex">
-                                                @livewire('admin.bills.edit-item', ['item' => $item], key($item->id))
+                                                @livewire('admin.bills.edit-item', ['item' => $item], key('item'.$item->id))
     
                                                 <a class="btn btn-danger btn-sm mr-4" wire:click="delete({{$item}})">
                                                     <i class="fa fa-trash"></i>    
@@ -474,8 +474,7 @@
                                             </td>
                                             <td class="px-6 py-4 border-r-0 border-l-0">
                                                 <div class="flex">
-
-                                                    @livewire('admin.bills.edit-detalle', ['detalle' => $detalle], key($detalle->id))
+                                                    @livewire('admin.bills.edit-detalle', ['detalle' => $detalle], key('detalle'.$detalle->id))
 
                                                     <a class="btn btn-danger btn-sm mr-4" wire:click="deleteDetalles({{$detalle}})">
                                                         <i class="fa fa-trash"></i>    
@@ -509,14 +508,15 @@
                         <tbody >
                             @if($detalles->count())
                                 @foreach ($terminos as $termino)
-                                    @if ($termino->status == 2)
+                                    @if ($termino->status == 2 )
                                         <tr class="bg-white border-b dark:bg-gray-100 dark:border-gray-100">
                                             <td class="px-6 py-4 border-r-0 border-l-0 text-black">
                                                 <input type="checkbox"  class="form-checkbox rounded border border-gray-500 text-gray-600" wire:model="isCheckedTerminos" value="{{ $termino->id }}"> <span class="mr-3"></span> {{ $termino->description }}
                                             </td>
                                             <td class="px-6 py-4 border-r-0 border-l-0">
                                                 <div class="flex">
-                                                    @livewire('admin.bills.edit-detalle', ['detalle' => $termino], key($termino->id))
+
+                                                    @livewire('admin.bills.edit-detalle', ['detalle' => $termino], key('termino'.$termino->id))
                                                     <a class="btn btn-danger btn-sm mr-4" wire:click="deleteDetalles({{$termino}})" wire:loading.attr="disabled" wire:target="deleteDetalles">
                                                         <i class="fa fa-trash"></i>  
                                                     </a>

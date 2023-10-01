@@ -57,7 +57,7 @@ class EditBill extends Component
         $this->user_id = Auth::user()->id;
         $this->bill = $bill;
         //dd($this->bill->datos_empresa[0]->id);
-        $this->datosEmpresa_id = $this->bill->datos_empresa[0]->id;
+        // $this->datosEmpresa_id = $this->bill->datos_empresa[0]->id;
 
         $detalles = $this->bill->detalles_termino;
 

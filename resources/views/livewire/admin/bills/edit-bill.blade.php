@@ -247,7 +247,7 @@
                                 <td class="px-6 py-4 border-r-0 border-l-0">
 
                                     <div class="flex">
-                                        @livewire('admin.bills.edit-item', ['item' => $item], key($item->id))
+                                        @livewire('admin.bills.edit-item', ['item' => $item], key('item'.$item->id))
 
                                         <a class="btn btn-danger btn-sm mr-4" wire:click="delete({{$item}})">
                                             <i class="fa fa-trash"></i>    
