@@ -3,7 +3,7 @@
 @section('title', 'Cotizador')
 
 @section('content_header')
-    <h1>Editar role</h1>
+    <h1>Editar roles</h1>
 @stop
 
 @section('content')
@@ -18,8 +18,12 @@
         <div class="card-body">
             {!! Form::model($role, ['route' => ['admin.roles.update', $role], 'method' => 'put']) !!}
                 @include('admin.roles.partials.form')
-                    
-                {!! Form::submit('Actualizar Rol', ['class' => 'btn btn-primary']) !!}
+                
+                @if($role->name == 'Admin')
+                
+                @else
+                    {!! Form::submit('Actualizar Rol', ['class' => 'btn btn-primary']) !!}
+                @endif
             {!! Form::close() !!}
         </div>
     </div>

@@ -4,6 +4,11 @@
 
 @section('content_header')
     <h1>Mostrar detalle de Producto</h1>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
 @stop
 
 @section('content')
@@ -11,9 +16,9 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop

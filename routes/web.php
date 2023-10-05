@@ -3,15 +3,9 @@
 use App\Http\Controllers\Admin\BillController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\CotizacioneController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', [CotizacioneController::class, 'index'])->name('cotizaciones.index');
-
-Route::get('cotizaciones/{cotizacion}', [CotizacioneController::class, 'show'])->name('cotizaciones.show');
-
-Route::get('producto/{producto}', [CotizacioneController::class, 'producto'])->name('cotizaciones.producto');
-
-
+Route::get('/', [HomeController::class, 'index'])->name('cotizaciones.index');
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {

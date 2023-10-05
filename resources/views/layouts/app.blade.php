@@ -26,8 +26,8 @@
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             
             @livewire('navigation')
-         
-            @livewire('admin.create-bill')
+            
+
             <!-- Page Content  -->
             <main>
                 {{ $slot }}

@@ -1,11 +1,13 @@
 <x-guest-layout>
+    
     <x-authentication-card>
+        
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
-
+        @can('admin.bills.destroy')
         <x-validation-errors class="mb-4" />
-
+        
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -56,5 +58,8 @@
                 </x-button>
             </div>
         </form>
+        @endcan
     </x-authentication-card>
+
+
 </x-guest-layout>

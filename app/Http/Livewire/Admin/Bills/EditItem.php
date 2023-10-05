@@ -16,7 +16,7 @@ class EditItem extends Component
 
     protected $rules = [
         'item.code' => 'required|min:3',
-        'item.name' => 'required|string|max:50',
+        'item.name' => 'required|string|max:200',
         'item.lenght' => 'required|numeric',
         'item.width' => 'required|numeric',
         'item.quantity' => 'required|numeric',

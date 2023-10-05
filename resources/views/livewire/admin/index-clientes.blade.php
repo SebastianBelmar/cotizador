@@ -1,10 +1,14 @@
 <div>
-    <div class="card">
-        <div class="card-header">
-            <a href="{{route('admin.clientes.create')}}" class="btn btn-secondary">Agregar Cliente</a>
+
+
+    <div class="border border-1 rounded-xl mb-3">
+        @can('admin.clientes.create')
+        <div class="bg-gray-200 rounded-t-xl px-4 pt-3 pb-3">
+            <a href="{{route('admin.clientes.create')}}" class="bg-gray-500 px-4 py-2 rounded-2xl text-gray-100 hover:text-gray-200 hover:bg-gray-600 cursor-pointer">Agregar Cliente</a>
         </div>
-        <div class="card-header">
-            <input wire:model="search" type="text" class="form-control" placeholder="Buscar cliente por nombre o e-mail">
+        @endcan
+        <div class="bg-gray-500 rounded-b-xl px-4 py-2">
+            <input wire:model="search" class="rounded-xl focus:border-black focus:ring-1 focus:ring-black " placeholder="Buscar cliente por nombre o e-mail">
         </div>
     </div>
 
@@ -38,14 +42,17 @@
                             <td class="px-6 py-4 border-r-0 border-l-0">
 
                                 <div class="flex">
+                                    @can('admin.clientes.edit')
                                     <a href="{{route('admin.clientes.edit', $cliente)}}" class="btn btn-primary mr-4"><i class="fa fa-edit"></i></a>
-
+                                    @endcan
+                                    @can('admin.clientes.destroy')
                                     <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST">
                                         @csrf
                                         @method('delete')
                                         
                                         <button type=submit class="btn btn-danger bg-red-500 btn-sm mr-4"><i class="fa fa-trash"></i></button>
                                     </form>
+                                    @endcan
                                 </div>
 
                             </td>
@@ -54,6 +61,7 @@
                 </tbody>
             </table>
         </div>   
+
 
         <div class="card-footer mt-2">
             {{$clientes->links()}}

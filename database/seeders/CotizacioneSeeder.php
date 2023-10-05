@@ -13,7 +13,7 @@ class CotizacioneSeeder extends Seeder
      */
     public function run(): void
     {
-        $cotizaciones = Cotizacione::factory(10)->create();
+        $cotizaciones = Cotizacione::factory(100)->create();
 
         foreach ($cotizaciones as $cotizacion) {
             $cotizacion->datos_empresa()->attach([

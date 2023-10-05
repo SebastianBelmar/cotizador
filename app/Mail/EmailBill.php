@@ -31,9 +31,9 @@ class EmailBill extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('ulfzark@gmail.com', 'el ulfsark'),
+            from: new Address('ulfzark@gmail.com', 'Cotizador'),
             replyTo: [
-                new Address('ulfzark@gmail.com', 'el ulfsark'),
+                new Address('ulfzark@gmail.com', 'Cotizador'),
             ],
             subject: 'Cotizacion',
         );

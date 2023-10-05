@@ -39,7 +39,7 @@ class EditBill extends Component
         } elseif ($this->conjuntoReglas === 'conjunto2') {
             return [
                 'code' => 'required|numeric|min:3',
-                'name' => 'required|string|max:50',
+                'name' => 'required|string|max:200',
                 'lenght' => 'required|numeric',
                 'width' => 'required|numeric',
                 'quantity' => 'required|numeric',

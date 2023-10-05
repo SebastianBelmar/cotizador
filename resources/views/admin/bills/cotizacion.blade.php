@@ -12,7 +12,7 @@ body {
 }
 
 table {
-    font-size: 12px;
+    font-size: 10px;
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -75,7 +75,7 @@ input[type="number"] {
 </style>
 <body>
 
-    <div class="contenedor">
+    <div class="contenedor" style="font-size: 10px;">
         <div class="izquierda">
             Nombre: {{(isset($datos->name) ) ? $datos->name : ''}} <br>
             Dirección: {{(isset($datos->address) ) ? $datos->address : ''}} <br>
@@ -88,59 +88,59 @@ input[type="number"] {
         <div class="derecha">
             <table class="tabla-pequena">
                 <tr>
-                    <td>Fecha</td>
-                    <td>{{$bill->fecha}}</td>
+                    <td style="background-color: rgb(230,230,230); color:black; font-weight: bold;">Fecha</td>
+                    <td>{{(new DateTime($bill->fecha))->format('d-m-Y')}}</td>
                 </tr>
                 <tr>
-                    <td>Cotización ID</td>
+                    <td style="background-color: rgb(230,230,230); color:black; font-weight: bold;">Cotización ID</td>
                     <td>{{$bill->id}}</td>
                 </tr>
                 <tr>
-                    <td>Cliente ID</td>
+                    <td style="background-color: rgb(230,230,230); color:black; font-weight: bold;">Cliente ID</td>
                     <td>{{$bill->cliente_id}}</td>
                 </tr>
                 <tr>
-                    <td>Válido hasta</td>
-                    <td>{{$bill->fecha}}</td>
+                    <td style="background-color: rgb(230,230,230); color:black; font-weight: bold;">Válido hasta</td>
+                    <td>{{(new DateTime($bill->fecha))->add(new DateInterval('P10D'))->format('d-m-Y')}}</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <div style="padding: 6rem;">
+    <div style="padding: 5rem;">
         <span></span>
     </div>
 
-    <div style="background-color: black; padding: 5px 10px;">
-        <span style="color: #fff;">Cliente</span>
+    <div style="background-color: black; padding: 5px 10px; font-size: 10px;">
+        <span style="color: #fff;">CLIENTE</span>
     </div>
-    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px">
-        Nombre: {{(isset($cliente->name) ) ? $cliente->name : ''}}<br>
-        Email:  {{(isset($cliente->email) ) ? $cliente->email : ''}}<br>
-        Dirección: {{(isset($cliente->address) ) ? $cliente->address : ''}}<br>
-        Ciudad: {{(isset($cliente->city) ) ? $cliente->city : ''}}<br>
-        Teléfono: {{(isset($cliente->phone) ) ? $cliente->phone : ''}}<br>
+    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px; font-size: 10px;">
+        <strong>Nombre:</strong> {{(isset($cliente->name) ) ? $cliente->name : ''}}<br>
+        <strong>Email:</strong>  {{(isset($cliente->email) ) ? $cliente->email : ''}}<br>
+        <strong>Dirección:</strong> {{(isset($cliente->address) ) ? $cliente->address : ''}}<br>
+        <strong>Ciudad:</strong> {{(isset($cliente->city) ) ? $cliente->city : ''}}<br>
+        <strong>Teléfono:</strong> {{(isset($cliente->phone) ) ? $cliente->phone : ''}}<br>
     </div>
 
     <div>
         <table>
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th style="width: 50px;">Código</th>
                     <th style="width: 40%;" >Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
+                    <th style="width: 50px;">Cantidad</th>
+                    <th>Precio Unitario</th>
                     <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($items as $item)
                     <tr>
-                        <td>{{$item->code}}</td>
-                        <td>{{$item->name}}</td>
-                        <td>{{$item->quantity}}</td>
-                        <td>$ {{$item->price}}</td>
-                        <td>$ {{$item->price}}</td>
+                        <td style="text-align: center;">{{$item->code}}</td>
+                        <td style="word-wrap: break-word;">{{$item->name}}</td>
+                        <td style="text-align: center;">{{$item->quantity}}</td>
+                        <td style="text-align: right;">$ {{number_format($item->price/$item->quantity, 2, ',', '.')}}</td>
+                        <td style="text-align: right;">$ {{number_format($item->price, 2, ',', '.')}}</td>
                     </tr>
                 @endforeach
 
@@ -149,34 +149,34 @@ input[type="number"] {
             <tfoot>
                 <tr>
                     <td colspan="3" class="sin-bordes"></td>
-                    <td>Valor Neto:</td>
-                    <td id="valor-neto">$ {{$total}}</td>
+                    <td style="text-align: right;">Valor Neto:</td>
+                    <td id="valor-neto" style="text-align: right;">$ {{ number_format($total, 2, ',', '.')}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sin-bordes"></td>
-                    <td>IVA (19%):</td>
-                    <td id="iva">$ {{$total * 0.2}}</td>
+                    <td style="text-align: right;">IVA (19%):</td>
+                    <td id="iva" style="text-align: right;">$ {{number_format($total * 0.2 , 2, ',', '.')}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sin-bordes"></td>
-                    <td>Total:</td>
-                    <td id="total">$ {{$total*1.2}}</td>
+                    <td style="text-align: right;">Total:</td>
+                    <td id="total" style="text-align: right;">$ {{ number_format($total*1.2, 2, ',', '.')}} </td>
                 </tr>
                 @if($bill->descuento != 0)
                     <tr>
                         <td colspan="3" class="sin-bordes"></td>
                         <td>Total con Descuento (Cliente):</td>
-                        <td id="total-descuento">$ {{$total*1.2 - $bill->descuento}}</td>
+                        <td id="total-descuento" style="text-align: right;">$ {{$total*1.2 - $bill->descuento}}</td>
                     </tr>
                 @endif
             </tfoot>
         </table>
     </div>
 
-    <div style="background-color: black; padding: 5px 10px; text-align: center;">
+    <div style="background-color: black; padding: 5px 10px; text-align: center; font-size: 10px;">
         <span style="color: #fff;">DETALLES TECNICOS</span>
     </div>
-    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px">
+    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px; font-size: 10px;">
         @foreach ($detalles as $detalle)
             @if ($detalle->status == 1)
                 {{$detalle->description}}<br>
@@ -184,10 +184,10 @@ input[type="number"] {
         @endforeach
     </div>
 
-    <div style="background-color: black; padding: 5px 10px; text-align: center;">
+    <div style="background-color: black; padding: 5px 10px; text-align: center; font-size: 10px;">
         <span style="color: #fff;">TÉRMINOS Y CONDICIONES</span>
     </div>
-    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px">
+    <div style="border: 2px solid #000; padding: 5px 10px; margin: 0px 0px 10px 0px; font-size: 10px;">
         @foreach ($detalles as $detalle)
             @if ($detalle->status == 2)
                 {{$detalle->description}}<br>
@@ -195,7 +195,7 @@ input[type="number"] {
         @endforeach
     </div>
 
-    <div style="text-align: center; margin: 50px 0px 0px 0px">
+    <div style="text-align: center; margin: 50px 0px 0px 0px; font-size: 10px;">
         Si usted tiene alguna duda sobre esta cotización por favor póngase en contacto con nosotros <br>
         | Teléfono: {{(isset($datos->phone) ) ? $datos->phone : ''}} | E-mail: {{(isset($datos->email) ) ? $datos->email : ''}} <br>
         <span style="font-weight: bold; font-style: italic; ">Gracias por confiar en nosotros!</span>

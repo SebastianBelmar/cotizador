@@ -292,11 +292,6 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -323,7 +318,7 @@ return [
             'text'        => 'Clientes',
             'route'         => 'admin.clientes.index',
             'icon'        => 'fas fa-user-tie fa-fw',
-            'can'       =>   'admin.users.index'
+            'can'       =>   'admin.clientes.index'
         ],
         ['header' => 'Administrador'],
         [
@@ -351,7 +346,7 @@ return [
             'route'  => 'admin.datos-empresas.index',
             'icon' => 'fas fa-building fa-fw',
             'active' => ['admin/datos-empresas*'],
-            //'can' =>  'admin.datos-empresas.index'
+            'can' =>  'admin.datos-empresas.index'
         ],
     ],
 

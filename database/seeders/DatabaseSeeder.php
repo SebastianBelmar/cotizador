@@ -24,14 +24,14 @@ class DatabaseSeeder extends Seeder
         
         $this->call(UserSeeder::class);
 
-        Cliente::factory(10)->create();
-        DetallesTermino::factory(10)->create();
-        DatosEmpresa::factory(10)->create();
-        Producto::factory(10)->create();
+        Cliente::factory(30)->create();
+        DetallesTermino::factory(30)->create();
+        DatosEmpresa::factory(30)->create();
+        Producto::factory(30)->create();
 
         $this->call(CotizacioneSeeder::class);
 
-        ItemProducto::factory(100)->create();
+        ItemProducto::factory(30)->create();
         
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

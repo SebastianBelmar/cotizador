@@ -3,7 +3,7 @@
 @section('title', 'Cotizador')
 
 @section('content_header')
-    <h1>Crear nuevo role</h1>
+    <h1>Crear nuevo roles</h1>
 @stop
 
 @section('content')

@@ -45,7 +45,7 @@ class CreateBill extends Component
     {
         if ($this->conjuntoReglas === 'conjunto1') {
             return [
-                'fecha' => "required|before:$this->date",
+                'fecha' => "required",
                 'descuento' => 'nullable|integer',
                 'status' => 'required|in:1,2',
                 'cliente_id' => 'required|not_in:null',
@@ -53,7 +53,7 @@ class CreateBill extends Component
         } elseif ($this->conjuntoReglas === 'conjunto2') {
             return [
                 'code' => 'required|min:3',
-                'name' => 'required|string|max:50',
+                'name' => 'required|string|max:200',
                 'lenght' => 'required|numeric',
                 'width' => 'required|numeric',
                 'quantity' => 'required|numeric',
@@ -62,7 +62,7 @@ class CreateBill extends Component
         } elseif ($this->conjuntoReglas === 'conjunto3') {
             return [
                 'item.code' => 'required|min:3',
-                'item.name' => 'required|string|max:50',
+                'item.name' => 'required|string|max:200',
                 'item.lenght' => 'required|numeric',
                 'item.width' => 'required|numeric',
                 'item.quantity' => 'required|numeric',
