@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\DatosEmpresaController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 
-Route::get('', [HomeController::class, 'index'])->name('admin.home');
+Route::get('home', [HomeController::class, 'index'])->name('admin.home');
 Route::resource('users', UserController::class)->middleware('can:admin.users.index')->names('admin.users');
 Route::resource('roles', RoleController::class)->names('admin.roles');
 Route::resource('productos', ProductoController::class)->middleware('can:admin.productos.index')->names('admin.productos');

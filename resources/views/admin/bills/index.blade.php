@@ -1,21 +1,10 @@
-@extends('adminlte::page')
+<x-app-layout>
+    <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
+        @livewire('admin.index-bills')
+    </div>
 
-@section('title', 'Cotizador')
+    <div class="fixed w-full h-screen bg-claro -top-0 flex -z-50">
 
-@section('content_header')
-    <h1>Lista de Cotizaciones</h1>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </div>
+</x-app-layout>
 
-    <!-- Styles -->
-    @livewireStyles
-@stop
-
-@section('content')
-    @livewire('admin.index-bills')
-@stop
-
-@section('css')
-@stop
-
-@section('js')
-@stop

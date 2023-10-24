@@ -1,0 +1,33 @@
+        /* Estilo de la barra de desplazamiento */
+        .scroll-container::-webkit-scrollbar {
+            width: 8px; /* Ancho de la barra de desplazamiento */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: hsla(200, 40%, 25%, 1); /* Color de la barra de desplazamiento */
+            border-radius: 10px; /* Bordes redondos */
+            transition: background 0.3s; /* Transición en el cambio de color */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: hsla(200, 18%, 56%, 1); /* Cambiar el color en hover */
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: hsla(0, 100%, 50%, 0); /* Color del fondo de la barra de desplazamiento */
+            opacity: 1;
+
+        }
+
+        /* Otras propiedades de personalización de la barra de desplazamiento */
+        .scroll-container::-webkit-scrollbar-button {
+            display: none; /* Ocultar los botones de la barra de desplazamiento (flechas) */
+        }
+
+        .scroll-container::-webkit-scrollbar-corner {
+            display: none; /* Ocultar la esquina de la barra de desplazamiento */
+        }
+
+        .scroll-container::-webkit-scrollbar-track-piece {
+            background: hsla(0, 0%, 100%, 0); /* Color de fondo de la barra de desplazamiento */
+        }

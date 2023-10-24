@@ -10,72 +10,103 @@
         <strong>{{session('info-success')}}</strong>
     </div>
     @endif
-    <div class="border border-1 rounded-xl mb-3">
+
+    <div class="w-full flex lg:flex-row flex-col mt-10">
+
         @can('admin.bills.create')
-        <div class="bg-gray-200 rounded-t-xl px-4 pt-3 pb-3">
-            <a wire:click="create" class="bg-gray-500 px-4 py-2 rounded-2xl text-gray-100 hover:text-gray-200 hover:bg-gray-600 cursor-pointer">Crear Cotización</a>
+
+        <div class="w-full h-20 mr-6 order-2 lg:order-1 ">
+            <div class="bg-blanco h-20 rounded-2xl flex flex-row shadow-md shadow-sombra">
+                <input wire:model="search"
+                    class="bg-claro h-18 rounded-xl border-0 m-[0.6rem] text-2xl placeholder:text-medioClaro pl-8 focus:ring-2 focus:ring-principal text-medio"
+                    placeholder="Ingrese el nombre del cliente">
+
+                <button class="bg-principal w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
+                    <i class="ri-search-line  text-4xl"></i>
+                </button>
+            </div>
         </div>
+
+        <div class="mb-6 lg:mb-0 h-20 order-1 lg:order-2 ">
+            <button wire:click="create" class="bg-principal lg:w-[360px] w-full h-20 rounded-2xl flex justify-between items-center px-12 shadow-md shadow-sombra hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
+                <p class=" font-bold text-2xl hover:text-principal">Nueva Cotización</p>
+                <i class="ri-add-circle-line text-4xl hover:text-principal"></i>
+            </button>
+        </div>
+
+        @else
+
+        <div class="lg:w-full w-full h-20 mr-6 order-2 lg:order-1 ">
+            <div class="bg-blanco w-full h-20 rounded-2xl flex flex-row shadow-md shadow-sombra">
+                <input wire:model="search"
+                    class="bg-claro w-full h-18 rounded-xl border-0 m-[0.6rem] text-2xl placeholder:text-medioClaro pl-8 focus:ring-2 focus:ring-principal text-medio"
+                    placeholder="Ingrese el nombre del cliente">
+
+                    <button class="bg-principal w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
+                        <i class="ri-search-line text-4xl"></i>
+                    </button>
+            </div>
+        </div>
+
         @endcan
-        <div class="bg-gray-500 rounded-b-xl px-4 py-2">
-            <input wire:model="search" class="rounded-xl focus:border-black focus:ring-1 focus:ring-black " placeholder="Ingrese el nombre del cliente">
+    </div>
+
+    <div class="scroll-container overflow-x-auto">
+        <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-[640px] md:w-full">
+            <div class="col-span-1 lg:pl-4">
+                ID
+            </div>
+            <div class="col-span-2">
+                FECHA
+            </div>
+            <div class="col-span-3 lg:col-span-4">
+                CLIENTE
+            </div>
+            <div class="col-span-3">
+                USUARIO
+            </div>
+            <div class="col-span-3 lg:col-span-2">
+                ACCIONES
+            </div>
+        </div>
+        @foreach ($cotizaciones as $cotizacion)
+        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] md:w-full">
+            <div class="col-span-1 lg:pl-4 pr-4">
+                {{$cotizacion->id}}
+            </div>
+            <div class="col-span-2 pr-4">
+                {{$cotizacion->fecha}}
+            </div>
+            <div class="col-span-3 lg:col-span-4 pr-4">
+                {{ $cotizacion->cliente_id ? $clientes[intval($cotizacion->cliente_id)] : ""}}
+            </div>
+            <div class="col-span-3 pr-4">
+                {{$cotizacion->user_id ? $usuarios[intval($cotizacion->user_id)] : ""}}
+            </div>
+            <div class="col-span-3 lg:col-span-2 pr-4 flex flex-row">
+                <a href="{{route('admin.bills.show', $cotizacion)}}" class=" hover:text-principal opacity-100 ri-eye-line text-xl hover:blur-[0.6px] mr-6"></a>
+                @can('admin.bills.edit')
+                <a href="{{route('admin.bills.edit', $cotizacion)}}" class="hover:text-principal hover:blur-[0.6px] pb-1 mr-6"><i class="ri-edit-line text-xl"></i></a>
+                @endcan
+
+                @can('admin.bills.destroy')
+                <form action="{{route('admin.bills.destroy', $cotizacion)}}" method="POST" class="hover:blur-[0.6px]">
+                    @csrf
+                    @method('delete')
+                    <button type=submit class="hover:text-danger pb-1"><i class="ri-delete-bin-line text-xl"></i></button>
+                </form>
+                @endcan
+            </div>
+        </div>
+        @endforeach
+        <div class="bg-blanco p-5 rounded-b-3xl w-[640px] md:w-full">
+
         </div>
     </div>
 
-
-
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg rounded-xl border border-gray-300 bg-gray-100">
-            <table class="w-full text-sm text-left text-gray-100 dark:text-gray-100 border-none">
-                <thead class="text-xs text-gray-100 uppercase bg-gray-50 dark:bg-gray-500 dark:text-gray-100 border-none">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 border-none">ID</th>
-                        <th scope="col" class="px-6 py-3 border-none">Fecha</th>
-                        <th scope="col" class="px-6 py-3 border-none">ID cliente</th>
-                        <th scope="col" class="px-6 py-3 border-none">ID usuario</th>
-                        <th scope="col" class="px-6 py-3 border-none">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($cotizaciones as $cotizacion)
-                    <tr class="border-none">
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowra border-r-0 border-l-0">{{$cotizacion->id}}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 border-r-0 border-l-0">{{$cotizacion->fecha}}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 border-r-0 border-l-0">{{ $cotizacion->cliente_id ? $clientes[intval($cotizacion->cliente_id)] : ""}}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 border-r-0 border-l-0" >{{$cotizacion->user_id ? $usuarios[intval($cotizacion->user_id)] : ""}}</td>
-
-                        <td class="px-6 py-4 border-r-0 border-l-0 w-80">
-                            <div class="flex">
-                                <a href="{{route('admin.bills.show', $cotizacion)}}" class="btn btn-secondary btn-sm mr-4"><i class="fa fa-eye"></i></a>
-                                @can('admin.bills.edit')
-                                <a href="{{route('admin.bills.edit', $cotizacion)}}" class="btn btn-primary mr-4"><i class="fa fa-edit"></i></a>
-                                @endcan
-                                @can('admin.bills.destroy')
-                                <form action="{{route('admin.bills.destroy', $cotizacion)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-        
-                                    <button type=submit class="btn btn-danger bg-red-500 btn-sm mr-4"><i class="fa fa-trash"></i></button>
-                                </form>
-                                @endcan
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            @if ($cotizaciones->count() == 0)
-            <div class="">
-                <div class="justify-content-center text-center pb-4">
-                    <strong>No hay registros</strong>
-                </div>
-            </div>
-            @endif
-        </div>
-
-        <div class="card-footer mt-2">
-            {{$cotizaciones->links()}}
-        </div>
+    <div class="mt-6 mb-10">
+        {{$cotizaciones->links('vendor.pagination.tailwind')}}
+    </div>
 
 
 
