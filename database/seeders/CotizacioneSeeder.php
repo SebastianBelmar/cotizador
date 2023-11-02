@@ -19,9 +19,6 @@ class CotizacioneSeeder extends Seeder
             $cotizacion->datos_empresa()->attach([
                 rand(1,9)
             ]);
-            $cotizacion->detalles_termino()->attach([
-                rand(1,9)
-            ]);
         }
     }
 }

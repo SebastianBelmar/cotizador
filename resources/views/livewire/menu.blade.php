@@ -90,7 +90,6 @@
 
     <!-- Menú lateral -->
 
-
     <div class="w-[20.5rem] bg-blanco rounded-r-3xl fixed inset-y-0 z-50 h-[100vh] transform transition-all" x-show="open"
         x-transition:enter="ease-in duration-500"
         x-transition:enter-start="-translate-x-[22rem]"

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalles_terminos', function (Blueprint $table) {
+        Schema::create('detalles_terminos_generales', function (Blueprint $table) {
             $table->id();
             $table->text('description');
             $table->enum('status', [1,2])->default(1);
-
-            $table->unsignedBigInteger('cotizacione_id');
-            $table->foreign('cotizacione_id')->references('id')->on('cotizaciones')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalles_terminos');
+        Schema::dropIfExists('detalles_terminos_generales');
     }
 };

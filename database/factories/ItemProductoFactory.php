@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Cotizacione;
 use App\Models\ItemProducto;
+use App\Models\Producto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,13 +16,15 @@ class ItemProductoFactory extends Factory
 
     public function definition(): array
     {
+        $producto = Producto::all()->random();
+
         return [
-            'code' => $this->faker->unique()->regexify('[0-9]{3}'),
-            'name' => $this->faker->unique()->word(20),
+            'code' => $producto->code,
+            'name' => $producto->name,
             'lenght' => $this->faker->regexify('[0-9]{2}'),
-            'width' => $this->faker->regexify('[0-9]{2}'),            
-            'quantity' => $this->faker->regexify('[0-9]{1}'),            
-            'price' => $this->faker->randomFloat(2, 1000, 5000),
+            'width' => $this->faker->regexify('[0-9]{2}'),
+            'quantity' => $this->faker->regexify('[1-9]{1}'),
+            'price' => $producto->price,
             'cotizacione_id' => Cotizacione::all()->random()->id,
         ];
     }

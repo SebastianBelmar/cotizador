@@ -4,7 +4,7 @@
     </div>
 
     <div class="fixed w-full h-screen bg-claro -top-0 flex -z-50">
-
     </div>
+
 </x-app-layout>
 

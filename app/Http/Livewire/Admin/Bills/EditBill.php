@@ -20,7 +20,7 @@ class EditBill extends Component
     public $open = false, $openDatos = false, $openDetalles = false;
 
     public $isCheckedTerminos = [], $isCheckedDetalles = [];
-    
+
     public $DTDescription, $DTStatus;
 
     protected $listeners = ['render', 'sincronizarDatos'];
@@ -52,8 +52,10 @@ class EditBill extends Component
             ];
         }
     }
+    public $clientes2;
 
     public function mount(Cotizacione $bill) {
+        $this->clientes2 = Cliente::all()->toArray();
         $this->user_id = Auth::user()->id;
         $this->bill = $bill;
         //dd($this->bill->datos_empresa[0]->id);
@@ -132,8 +134,8 @@ class EditBill extends Component
             'code' => $this->code,
             'name' => $this->name,
             'lenght' => $this->lenght,
-            'width' => $this->width,            
-            'quantity' => $this->quantity,            
+            'width' => $this->width,
+            'quantity' => $this->quantity,
             'price' => $this->price,
             'cotizacione_id' => $this->bill->id,
         ]);
@@ -185,7 +187,7 @@ class EditBill extends Component
     public function delete (ItemProducto $item) {
         $item->delete();
     }
-    
+
     public function deleteDetalles (DetallesTermino $detalle) {
         $detalle->delete();
         $this->emit('render');

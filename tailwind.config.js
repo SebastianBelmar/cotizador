@@ -23,7 +23,7 @@ export default {
                 medioClaro: 'hsla(200, 19%, 79%, 1)',
                 claro: 'hsla(200, 50%, 96%, 1)',
                 blanco: 'hsla(200, 50%, 100%, 1)',
-                success: 'hsla(200, 50%, 96%, 1)',
+                success: 'hsla(166, 100%, 44%, 1)',
                 info: 'hsla(200, 50%, 96%, 1)',
                 aler: 'hsla(200, 50%, 96%, 1)',
                 danger: 'hsla(335, 67%, 55%, 1)',

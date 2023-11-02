@@ -9,7 +9,7 @@ class Cliente extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'last_name', 'email', 'phone', 'address', 'city'];
+    protected $fillable = ['name', 'rut', 'email', 'phone', 'address', 'city', 'horario', 'giro', 'web'];
 
     public function cotizacion() {
         return $this->hasMany(Cotizacion::class);

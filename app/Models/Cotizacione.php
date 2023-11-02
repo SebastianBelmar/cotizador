@@ -31,6 +31,6 @@ class Cotizacione extends Model
     public function detalles_termino()
     {
         // se puede usar de las dos formas '' o con objeto
-        return $this->belongsToMany('App\Models\DetallesTermino');
+        return $this->hasMany('App\Models\DetallesTermino');
     }
 }

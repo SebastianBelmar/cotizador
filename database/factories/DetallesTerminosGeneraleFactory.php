@@ -2,16 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Cotizacione;
-use App\Models\DetallesTermino;
+use App\Models\DetallesTerminosGenerale;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DetallesTermino>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DetallesTerminosGenerale>
  */
-class DetallesTerminoFactory extends Factory
+class DetallesTerminosGeneraleFactory extends Factory
 {
-    protected $model = DetallesTermino::class;
+    protected $model = DetallesTerminosGenerale::class;
 
     public function definition(): array
     {
@@ -20,7 +19,6 @@ class DetallesTerminoFactory extends Factory
         return [
             'description' => $name,
             'status' => $this->faker->randomElement([1, 2]),
-            'cotizacione_id' => Cotizacione::all()->random()->id,
         ];
     }
 }
