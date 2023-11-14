@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'remember_token' => 1234567890,
             'profile_photo_path' => null,
             'current_team_id' => null,
-        ])->assignRole('Admin');
+        ])->assignRole('Administrador');
 
         User::create([
             'name' => 'vendedor',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'remember_token' => 1234567890,
             'profile_photo_path' => null,
             'current_team_id' => null,
-        ])->assignRole('Seller');
+        ])->assignRole('Vendedor');
 
         User::factory(99)->create();
     }

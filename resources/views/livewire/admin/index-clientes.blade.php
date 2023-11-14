@@ -1,77 +1,136 @@
-<div>
+<div class="mt-4">
+
+    @if (session('info'))
+    <div x-data="{open: true}">
+        <button x-show="open" class="text-blanco bg-success p-4 rounded-full text-center text-xl w-full" @click="open=false;">
+            <strong>{{session('info')}}</strong>
+        </button>
+    </div>
+    @endif
+
+    @if (session('info-danger'))
+    <div x-data="{open: true}">
+        <button x-show="open" class="text-blanco bg-danger p-4 rounded-full text-center text-xl w-full" @click="open=false;">
+            <strong>{{session('info-danger')}}</strong>
+        </button>
+    </div>
+    @endif
+
+    <div class="w-full flex lg:flex-row flex-col mt-8" x-data="{busqueda : @entangle('search').defer, close: false}">
 
 
-    <div class="border border-1 rounded-xl mb-3">
+
         @can('admin.clientes.create')
-        <div class="bg-gray-200 rounded-t-xl px-4 pt-3 pb-3">
-            <a href="{{route('admin.clientes.create')}}" class="bg-gray-500 px-4 py-2 rounded-2xl text-gray-100 hover:text-gray-200 hover:bg-gray-600 cursor-pointer">Agregar Cliente</a>
-        </div>
+
+            <div class="w-full h-20 mr-6 order-2 lg:order-1 ">
+                <div class="bg-blanco h-20 rounded-2xl flex flex-row shadow-md shadow-sombra">
+                    <input x-model="busqueda"
+                        class="bg-claro h-18 rounded-xl border-0 m-[0.6rem] text-2xl placeholder:text-medioClaro pl-8 focus:ring-2 focus:ring-principal text-medio"
+                        placeholder="Ingrese el nombre del cliente">
+
+                    <button class="bg-danger w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-danger text-blanco hover:ring-2 ring-danger" x-show="close" @click="busqueda='';close = false" wire:click="buscar">
+                        <i class="ri-close-line text-4xl"></i>
+                    </button>
+
+                    <button class="bg-principal w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal" @click="(busqueda) ? close = true : close = false" wire:click="buscar">
+                        <i class="ri-search-line  text-4xl"></i>
+                    </button>
+
+
+                </div>
+            </div>
+
+            <div class="mb-6 lg:mb-0 h-20 order-1 lg:order-2 ">
+                <a href="{{route('admin.clientes.create')}}" class="bg-principal lg:w-[360px] w-full h-20 rounded-2xl flex justify-between items-center px-12 shadow-md shadow-sombra hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
+                    <p class=" font-bold text-2xl hover:text-principal">Agregar Cliente</p>
+                    <i class="ri-add-circle-line text-4xl hover:text-principal"></i>
+                </a>
+            </div>
+
+        @else
+
+            <div class="w-full h-20 order-2 lg:order-1 ">
+                <div class="bg-blanco h-20 rounded-2xl flex flex-row shadow-md shadow-sombra">
+                    <input x-model="busqueda"
+                        class="bg-claro h-18 rounded-xl border-0 m-[0.6rem] text-2xl placeholder:text-medioClaro pl-8 focus:ring-2 focus:ring-principal text-medio"
+                        placeholder="Ingrese el nombre del cliente">
+
+                    <button class="bg-danger w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-danger text-blanco hover:ring-2 ring-danger" x-show="close" @click="busqueda='';close = false" wire:click="buscar">
+                        <i class="ri-close-line text-4xl"></i>
+                    </button>
+
+                    <button class="bg-principal w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal" @click="(busqueda) ? close = true : close = false" wire:click="buscar">
+                        <i class="ri-search-line  text-4xl"></i>
+                    </button>
+
+
+                </div>
+            </div>
+
         @endcan
-        <div class="bg-gray-500 rounded-b-xl px-4 py-2">
-            <input wire:model="search" class="rounded-xl focus:border-black focus:ring-1 focus:ring-black " placeholder="Buscar cliente por nombre o e-mail">
+    </div>
+
+    <div class="scroll-container overflow-x-auto">
+        <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-[640px] md:w-full">
+            <div class="col-span-1 lg:pl-4">
+                ID
+            </div>
+            <div class="col-span-3">
+                NOMBRE
+            </div>
+            <div class="col-span-6 lg:col-span-6">
+                EMAIL
+            </div>
+            <div class="col-span-2 lg:col-span-2">
+                ACCIONES
+            </div>
+        </div>
+        @foreach ($clientes as $cliente)
+        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] md:w-full">
+            <div class="col-span-1 lg:pl-4 pr-4">
+                {{$cliente->id}}
+            </div>
+            <div class="col-span-3 pr-4">
+                {{$cliente->name}}
+            </div>
+            <div class="col-span-6 lg:col-span-6 pr-4">
+                {{ $cliente->email}}
+            </div>
+            <div class="col-span-2 lg:col-span-2 pr-4 flex flex-row">
+                @can('admin.clientes.edit')
+                <a href="{{route('admin.clientes.edit', $cliente)}}" class="hover:text-principal hover:blur-[0.6px] pb-1 mr-6"><i class="ri-edit-line text-xl"></i></a>
+                @endcan
+
+                @can('admin.clientes.destroy')
+                <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST" class="hover:blur-[0.6px]">
+                    @csrf
+                    @method('delete')
+                    <button type=submit class="hover:text-danger pb-1"><i class="ri-delete-bin-line text-xl"></i></button>
+                </form>
+                @endcan
+
+            </div>
+
+        </div>
+        @endforeach
+
+        @if($clientes->isEmpty())
+        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] md:w-full">
+            <div class="col-span-12 text-center text-xl p-8">No se encontraron resultados para tu búsqueda.</div>
+        </div>
+        @endif
+        <div class="bg-blanco p-5 rounded-b-3xl w-[640px] md:w-full">
+
         </div>
     </div>
 
-        @if($clientes->count())
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg rounded-xl border border-gray-300 bg-gray-100">
-            <table class="w-full text-sm text-left text-gray-100 dark:text-gray-100 border-none">
-                <thead class="text-xs text-gray-100 uppercase bg-gray-50 dark:bg-gray-500 dark:text-gray-100 border-none">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 border-none">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 border-none">
-                            Nombre
-                        </th>
-                        <th scope="col" class="px-6 py-3 border-none">
-                            Email
-                        </th>
-                        <th scope="col" class="px-6 py-3 border-none">
-                            Acciones
-                        </th>
-                    </tr>
-                </thead>
-                <tbody >
-                    @foreach ($clientes as $cliente)
-                        <tr class="border-none">
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowra border-r-0 border-l-0">{{$cliente->id}}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900  border-r-0 border-l-0">{{$cliente->name}}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 border-r-0 border-l-0">{{$cliente->email}}</td>
-
-                            <td class="px-6 py-4 border-r-0 border-l-0">
-
-                                <div class="flex">
-                                    @can('admin.clientes.edit')
-                                    <a href="{{route('admin.clientes.edit', $cliente)}}" class="btn btn-primary mr-4"><i class="fa fa-edit"></i></a>
-                                    @endcan
-                                    @can('admin.clientes.destroy')
-                                    <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        
-                                        <button type=submit class="btn btn-danger bg-red-500 btn-sm mr-4"><i class="fa fa-trash"></i></button>
-                                    </form>
-                                    @endcan
-                                </div>
-
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>   
-
-
-        <div class="card-footer mt-2">
-            {{$clientes->links()}}
-        </div>
+    <div class="mt-6 mb-10" wire:ignore>
+        @if($clientes->isEmpty())
 
         @else
-        <div class="card mt-4">
-            <div class="card-body row justify-content-center">
-                <strong>No hay registros</strong>
-            </div>
-        </div>
+            {{$clientes->links('vendor.pagination.tailwind')}}
         @endif
+    </div> 
+
 </div>

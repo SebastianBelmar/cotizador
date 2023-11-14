@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('logo')->nullable();
             $table->string('name');
+            $table->string('rut');
+            $table->string('giro');
             $table->string('address');
             $table->string('city');
             $table->string('website');
-            $table->unsignedInteger('phone');
+            $table->bigInteger('phone');
             $table->string('email');
             $table->string('office_hours');
 

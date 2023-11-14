@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Livewire\Admin\Cotizaciones;
+
+use App\Models\Cliente;
+use App\Models\Cotizacione;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+
+use Livewire\WithPagination;
+
+class Index extends Component
+{
+    use WithPagination;
+
+    public $search = "";
+
+    public $hola = "";
+
+    protected $listeners = ['render'];
+
+    public function buscar() {
+        $this->resetPage();
+        $this->emit('render');
+    }
+
+    public function reiniciarBusqueda() {
+        $this->search == '';
+        $this->emit('render');
+    }
+
+    public function render()
+    {
+        $clientes = Cliente::where('name', 'like', '%' . trim($this->search) . '%')->get();
+
+        $clienteIds = $clientes->pluck('id');
+
+        if ($this->search == '') {
+            $cotizaciones = Cotizacione::latest('id')->paginate(10);
+        } else {
+            $cotizaciones = Cotizacione::whereIn('cliente_id', $clienteIds)
+                            ->latest('id')
+                            ->paginate(10);
+        }
+
+        $datos = Cliente::get();
+
+        $clientes = [];
+
+        foreach ($datos as $dato) {
+            $clientes[$dato->id] = $dato->name;
+        }
+
+        $datos = User::get();
+
+        $usuarios = [];
+
+        foreach ($datos as $dato) {
+            $usuarios[$dato->id] = $dato->name;
+        }
+
+
+        return view('livewire.admin.cotizaciones.index', compact('cotizaciones', 'clientes', 'usuarios'));
+
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+        $this->emit('render');
+    }
+
+    public function create()
+    {
+        return redirect()->route('admin.bills.create');
+    }
+}
+

@@ -48,7 +48,14 @@ class EmailBill extends Mailable
         return new Content(
             view: 'admin.bills.email',
             with: [
-                'orderName' => $this->data['name'],
+                'nombreCliente' => $this->data['nombreCliente'],
+                'nombreEmpresa' => $this->data['nombreEmpresa'],
+                'nombreVendedor' => $this->data['nombreVendedor'],
+                'telefonoEmpresa' => $this->data['telefonoEmpresa'],
+                'fecha' => $this->data['fecha'],
+                'id' => $this->data['id'],
+                'total' =>$this->data['total'],
+                'path' => $this->data['path'],
             ]
         );
     }

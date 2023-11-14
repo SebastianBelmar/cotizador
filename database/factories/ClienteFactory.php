@@ -19,7 +19,7 @@ class ClienteFactory extends Factory
 
         return [
             'name' => $name,
-            'rut' => $this->faker->unique()->regexify('[0-9]{8} - [0-9]{1}'),
+            'rut' => $this->faker->unique()->regexify('[0-9]{8}-[0-9]{1}'),
             'web' => 'www.' . $this->faker->unique()->word(20) .'.com',
             'giro' => $this->faker->sentence(2),
             'email' => $this->faker->unique()->safeEmail(),

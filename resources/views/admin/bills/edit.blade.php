@@ -1,22 +1,14 @@
-@extends('adminlte::page')
+<x-app-layout>
 
-@section('title', 'Cotizador')
+    <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
+        @livewire('admin.cotizaciones.editar', ['bill' => $bill], key($bill->id))
+    </div>
 
-@section('content_header')
-    <h1>Editar Cotizacion {{$bill->id}}</h1>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- fondo --}}
+    <div class="fixed w-full h-screen bg-claro -top-0 flex -z-50">
+    </div>
 
-    <!-- Styles -->
-    @livewireStyles
-@stop
+</x-app-layout>
 
-@section('content')
-    
-    @livewire('admin.bills.edit-bill', ['bill' => $bill], key($bill->id))
-@stop
 
-@section('css')
-@stop
 
-@section('js')
-@stop

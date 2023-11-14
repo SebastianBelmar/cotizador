@@ -28,8 +28,6 @@ class="bg-blanco rounded-b-3xl mb-4 overflow-hidden shadow-md shadow-sombra tran
         @click="ver1= !ver1">
             VER
         </button>       
-
-
     </div>
 
 </div>

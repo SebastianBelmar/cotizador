@@ -13,6 +13,20 @@
                 </a>
             @endif
 
+            <div class="flex justify-center items-center">
+                <p class="text-md text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1">
+                    <span class="col-span-1">{!! __('Showing') !!}</span>
+                    @if ($paginator->firstItem())
+                        <span class="font-semibold col-span-1">{{ $paginator->firstItem() }}
+                        {!! __('to') !!}
+                        {{ $paginator->lastItem() }}</span>
+                    @else
+                        {{ $paginator->count() }}
+                    @endif
+                    <span class="font-semibold col-span-2"> {!! __('of') !!} {{ $paginator->total() }} {!! __('results') !!}</span>
+                </p>
+            </div>
+
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-6 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-3xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
                     Siguiente

@@ -21,7 +21,9 @@ class DatosEmpresaFactory extends Factory
         return [
             'name' => $name,
             'logo' => $this->faker->mimeType(),
-            'address' => $this->faker->sentence(2),
+            'rut' => $this->faker->unique()->regexify('[0-9]{8}-[0-9]{1}'),
+            'giro' => $this->faker->sentence(3),
+            'address' => $this->faker->address(2),
             'city' => $this->faker->city(),
             'website' => 'www.' . $this->faker->unique()->word(20) .'.com',
             'phone' => $this->faker->unique()->regexify('[0-9]{8}'),

@@ -16,16 +16,14 @@
 >
 
 <div class="relative w-full -ml-12 ">
-<div class="absolute inset-full -top-12 pl-3 flex items-center pointer-events-none">
-    <!-- Agrega tu ícono aquí -->
-    <i class="ri-arrow-down-s-line text-oscuro text-2xl top-0"></i>
-</div>
+    <div class="absolute inset-full -top-12 pl-3 flex items-center pointer-events-none">
+        <!-- Agrega tu ícono aquí -->
+        <i class="ri-arrow-down-s-line text-oscuro text-2xl top-0"></i>
+    </div>
 </div>
 
 <div class="relative  mt-2">
-
     <div x-show="isFocused2" class="absolute flex flex-col items-start pb-4 rounded-2xl border-medio border-2 bg-claro w-full max-h-96 overflow-y-auto scroll-container">
-
         <div class="w-full text-start px-6 py-3 text-lg grid grid-cols-6 gap-4 border-b border-medioClaro  bg-oscuro text-blanco">
             <p class="col-span-2 text-center">Código</p>
             <p class="col-span-2">Nombre</p>

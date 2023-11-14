@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 use App\Models\Cotizacione;
+use App\Models\DatosEmpresa;
 use App\Models\ItemProducto;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
@@ -43,7 +44,7 @@ class BillController extends Controller
      */
     public function show(Cotizacione $bill)
     {
-        $datos = $bill->datos_empresa()->first();
+        $datos = DatosEmpresa::get()->first();
 
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
@@ -92,7 +93,7 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
-        $datos = $bill->datos_empresa()->first();
+        $datos = DatosEmpresa::get()->first();
 
         $cliente = Cliente::where('id', $bill->cliente_id)->first();
 
@@ -112,6 +113,7 @@ class BillController extends Controller
             'datos' => $datos,
             'cliente' => $cliente,
             'detalles' => $detalles,
+            'ruta' => 0
         ]);
 
         return $pdf->stream();
@@ -121,7 +123,7 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
-        $datos = $bill->datos_empresa()->first();
+        $datos = DatosEmpresa::get()->first();
 
         $cliente = Cliente::where('id', $bill->cliente_id)->first();
 
@@ -141,6 +143,7 @@ class BillController extends Controller
             'datos' => $datos,
             'cliente' => $cliente,
             'detalles' => $detalles,
+            'ruta' => 0
         ]);
 
         return $pdf->download();
@@ -150,7 +153,7 @@ class BillController extends Controller
     {
         $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
 
-        $datos = $bill->datos_empresa()->first();
+        $datos = DatosEmpresa::get()->first();
 
         $cliente = Cliente::where('id', $bill->cliente_id)->first();
 
@@ -170,6 +173,7 @@ class BillController extends Controller
             'datos' => $datos,
             'cliente' => $cliente,
             'detalles' => $detalles,
+            'ruta' => 0
         ]);
 
         // Obtener el contenido del PDF como una cadena

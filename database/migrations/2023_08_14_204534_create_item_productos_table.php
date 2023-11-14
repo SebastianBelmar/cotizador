@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('code');
             $table->string('name');
-            $table->unsignedInteger('lenght');
-            $table->unsignedInteger('width');
+            $table->string('description');
+            $table->decimal('lenght', 10, 4)->nullable();
+            $table->decimal('width', 10, 4)->nullable();
             $table->unsignedInteger('quantity');
             $table->decimal('price', 10, 2);
+            $table->decimal('total', 10, 2);
 
             $table->timestamps();
 

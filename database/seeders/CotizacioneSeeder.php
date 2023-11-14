@@ -15,10 +15,5 @@ class CotizacioneSeeder extends Seeder
     {
         $cotizaciones = Cotizacione::factory(100)->create();
 
-        foreach ($cotizaciones as $cotizacion) {
-            $cotizacion->datos_empresa()->attach([
-                rand(1,9)
-            ]);
-        }
     }
 }

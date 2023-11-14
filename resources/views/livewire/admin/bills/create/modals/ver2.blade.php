@@ -87,7 +87,7 @@
                             ${{number_format($item['total'], 0, '.', '.');}}
                         </div>
                         <div class="col-span-2 flex justify-start items-center">
-                            <button @click="open2edit = true" wire:click="editarItem('{{$indice}}')"><i class="ri-edit-line text-2xl text-principal transition-all ease-in-out duration-500 hover:blur-[1px] mr-4"></i></button>
+                            <button @click="item=itemServer; selectProduct=selectProductServer; selected = itemNombre;  Livewire.emit('reinicioVariables'); Livewire.emit('render');" wire:click="editarItem('{{$indice}}');"><i class="ri-edit-line text-2xl text-principal transition-all ease-in-out duration-500 hover:blur-[1px] mr-4"></i></button>
                             <button wire:click="borrarItem('{{$indice}}')"><i class="ri-delete-bin-line text-2xl transition-all ease-in-out duration-500  hover:blur-[1px]  text-danger"></i></button>
                         </div>
                     </div>

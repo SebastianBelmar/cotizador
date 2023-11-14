@@ -33,11 +33,13 @@ class DatosEmpresaController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'rut' => 'required',
+            'giro' => 'required',
             'address' => 'required',
             'city' => 'required',
             'email' => 'required|email|unique:datos_empresas',
             'website' => 'required|unique:datos_empresas',
-            'phone' => 'required|regex:/^[0-9]+$/',
+            'phone' => 'required|integer',
             'office_hours' => 'required',
         ]);
 
@@ -69,17 +71,19 @@ class DatosEmpresaController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'rut' => 'required',
+            'giro' => 'required',
             'address' => 'required',
             'city' => 'required',
             'email' => "required|email|unique:datos_empresas,email,$datosEmpresa->id",
             'website' => "required|unique:datos_empresas,website,$datosEmpresa->id",
-            'phone' => 'required|regex:/^[0-9]+$/',
+            'phone' => 'required|integer',
             'office_hours' => 'required',
         ]);
 
         $datosEmpresa->update($request->all());
 
-        return redirect()->route('admin.datos-empresas.edit', $datosEmpresa)->with('info', 'La plantilla se actualizó correctamente');
+        return redirect()->route('admin.datos-empresas.edit', $datosEmpresa)->with('info', 'Los datos de la empresa se actualizaron correctamente');
     }
 
     /**

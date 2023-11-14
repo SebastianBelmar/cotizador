@@ -1,32 +1,10 @@
-@extends('adminlte::page')
+<x-app-layout> 
 
-@section('title', 'Cotizador')
-
-@section('content_header')
-    <h1>Lista de Clientes</h1>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Styles -->
-    @livewireStyles
-@stop
-
-@section('content')
-    @if (session('info'))
-    <div class="alert alert-success">
-        <strong>{{session('info')}}</strong>
+    <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
+    
+        @livewire('admin.index-clientes')
     </div>
-    @endif
-    @if (session('info-danger'))
-    <div class="alert alert-danger">
-        <strong>{{session('info-danger')}}</strong>
+
+    <div class="fixed w-full h-screen bg-claro -top-0 flex -z-50">
     </div>
-    @endif
-
-    @livewire('admin.index-clientes')
-@stop
-
-@section('css')
-@stop
-
-@section('js')
-@stop
+</x-app-layout>

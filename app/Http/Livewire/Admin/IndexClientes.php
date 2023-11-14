@@ -12,6 +12,11 @@ class IndexClientes extends Component
 
     public $search;
 
+    public function buscar() {
+        $this->resetPage();
+        $this->emit('render');
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -20,7 +25,7 @@ class IndexClientes extends Component
     public function render()
     {
         $clientes = Cliente::where('name', 'LIKE', '%'.  trim($this->search) . '%')
-        ->orWhere('email', 'LIKE', '%'.  trim($this->search) . '%')->paginate();
+        ->orWhere('email', 'LIKE', '%'.  trim($this->search) . '%')->orderBy('id', 'desc')->paginate();
 
         return view('livewire.admin.index-clientes', compact('clientes'));
     }

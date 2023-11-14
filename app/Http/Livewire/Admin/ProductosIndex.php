@@ -15,6 +15,12 @@ class ProductosIndex extends Component
 
     public $search;
 
+
+    public function buscar() {
+        $this->resetPage();
+        $this->emit('render');
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -22,7 +28,8 @@ class ProductosIndex extends Component
 
     public function render()
     {
-        $productos = Producto::where('name', 'LIKE' ,  '%' . $this->search . '%')
+        $productos = Producto::where('name', 'LIKE' ,  '%' . trim($this->search) . '%')
+                        ->orWhere('code', 'LIKE', '%'.  trim($this->search) . '%')
                         ->latest('id')
                         ->paginate(10);
 

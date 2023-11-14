@@ -21,10 +21,12 @@ class ItemProductoFactory extends Factory
         return [
             'code' => $producto->code,
             'name' => $producto->name,
+            'description' => $this->faker->unique()->sentence(10),
             'lenght' => $this->faker->regexify('[0-9]{2}'),
             'width' => $this->faker->regexify('[0-9]{2}'),
             'quantity' => $this->faker->regexify('[1-9]{1}'),
             'price' => $producto->price,
+            'total' => $producto->price,
             'cotizacione_id' => Cotizacione::all()->random()->id,
         ];
     }

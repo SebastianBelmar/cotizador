@@ -104,11 +104,13 @@
         </div>
     </div>
 
-    <div class="mt-6 mb-10">
+     <div class="mt-6 mb-10">
+        {{$cotizaciones->links('simple-tailwind')}}
+    </div> 
+     <div class="mt-6 mb-10">
         {{$cotizaciones->links('vendor.pagination.tailwind')}}
+    </div> 
+    <div class="mt-6 mb-10">
+        {{$cotizaciones->links()}}
     </div>
-
-
-
-
 </div>

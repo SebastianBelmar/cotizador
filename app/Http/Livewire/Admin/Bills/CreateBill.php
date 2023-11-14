@@ -39,7 +39,7 @@ class CreateBill extends Component
 
     public $total = 0;
 
-    protected $listeners = ['render', 'create', 'mount', 'sincronizarDatos'];
+    protected $listeners = ['render', 'create', 'mount', 'sincronizarDatos', 'reinicioVariables','actualizarEdit'];
 
     public $conjuntoReglas;
 
@@ -242,12 +242,19 @@ class CreateBill extends Component
 
         array_push($this->datosItems, $this->datosItem);
 
+        $this->reinicioVariables();
+
+        $this->activar = true;
+        $this->icon2 = true;
+        $this->open2 = false;
+    }
+
+    public function reinicioVariables() {
+
         $this->producto_id= '';
 
         $this->producto_id = '';
-        $this->itemProducto->name = '';
-        $this->itemProducto->code = '';
-        $this->itemProducto->price = '';
+        $this->itemProducto = '';
 
          $this->itemCodigo = '';
          $this->itemNombre = '';
@@ -271,12 +278,41 @@ class CreateBill extends Component
             "total" => $this->itemPrecioTotal,
         ];
 
-        $this->activar = true;
-        $this->icon2 = true;
-        $this->open2 = false;
+        $this->emit('render');
     }
 
+
+    public $livewireVariable = 'Hola desde Livewire';
+
+    public function actualizarAlpineVariable()
+    {
+        $nuevoValor = 'Nuevo valor desde Livewire';
+        $this->emit('actualizarAlpineVariable', $nuevoValor);
+    }
+
+    public function ejecutarFuncionAlpine()
+    {
+        // Emitir un evento personalizado para ejecutar la función de Alpine.js
+        $this->emit('ejecutarFuncionAlpine');
+    }
+
+    public $index_edit;
+
+    public $message = 'Hola desde Livewire';
+
+    public function actualizarEdit() {
+
+        $this->itemDescripcion = 'hola foca';
+        // Modifica la propiedad $message
+        $nuevoValor = 'Nuevo valor desde Livewire descripcion';
+
+        // Emite un evento personalizado con el nuevo valor
+        $this->emit('actualizarEdit', $nuevoValor);
+    }  
+
     public function editarItem($index) {
+
+        $this->index_edit = $index;
 
         $this->datosItem = $this->datosItems[$index];
 
@@ -286,6 +322,12 @@ class CreateBill extends Component
         $this->itemCodigo = $this->datosItem['codigo'];
         $this->itemNombre = $this->datosItem['nombre'];
         $this->itemPrecio = $this->datosItem['descripcion'];
+
+        $this->emit('render');
+
+        $this->open2edit =true;
+
+        $this->emit('actualizarEdit');
         
     }
 
@@ -304,7 +346,11 @@ class CreateBill extends Component
             $this->validate();
         }
 
-        array_push($this->datosItems, $this->datosItem);
+        $this->datosItems[$this->index_edit]=$this->datosItem;
+
+        $this->reinicioVariables();
+
+        $this->index_edit='';
 
         $this->producto_id= '';
 
@@ -429,6 +475,8 @@ class CreateBill extends Component
 
         $this->open = false;
     }
+
+
 
     public function create() {
         $this->conjuntoReglas = 'conjunto1';

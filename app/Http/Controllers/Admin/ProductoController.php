@@ -34,20 +34,25 @@ class ProductoController extends Controller
     {
 
         $request->validate([
-            'code' => 'required|numeric|unique:productos',
+            'code' => 'required|integer|unique:productos,code',
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
+        ], [
+            'code.required' => 'El código es obligatorio.',
+            'code.integer' => 'El código debe ser un número entero.',
+            'code.unique' => 'El código ya está en uso.',
+            'name.required' => 'El nombre del producto es obligatorio.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.required' => 'El precio es obligatorio.',
+            'price.numeric' => 'El precio debe ser un número.',
         ]);
 
         $producto = Producto::create($request->all());
 
-        return redirect()->route('admin.productos.edit', $producto)->with('info', 'El producto se creó con éxito');
+        return redirect()->route('admin.productos.index', $producto)->with('info', 'El producto se creó con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Producto $producto)
     {
         return view('admin.productos.show', compact('producto'));
@@ -71,11 +76,19 @@ class ProductoController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
+        ], [
+            'code.required' => 'El código es obligatorio.',
+            'code.integer' => 'El código debe ser un número entero.',
+            'code.unique' => 'El código ya está en uso.',
+            'name.required' => 'El nombre del producto es obligatorio.',
+            'description.required' => 'La descripción es obligatoria.',
+            'price.required' => 'El precio es obligatorio.',
+            'price.numeric' => 'El precio debe ser un número.',
         ]);
 
         $producto->update($request->all());
 
-        return redirect()->route('admin.productos.edit', compact('producto'))->with('info', "El producto se actualizó con éxito");
+        return redirect()->route('admin.productos.index', compact('producto'))->with('info', "El producto se actualizó con éxito");
     }
 
     /**
@@ -85,6 +98,6 @@ class ProductoController extends Controller
     {
         $producto->delete();
 
-        return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');
+        return redirect()->route('admin.productos.index')->with('info-danger', 'El producto se eliminó con éxito');
     }
 }

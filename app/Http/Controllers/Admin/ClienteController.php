@@ -31,11 +31,14 @@ class ClienteController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'last_name' => '',
-            'email' => 'email|nullable',
+            'rut' => 'required|unique:clientes,rut',
+            'giro' => 'nullable',
+            'email' => 'email|nullable|unique:clientes,email',
+            'web' => 'nullable',
             'phone' => 'numeric|nullable',
             'address' => '',
             'city' => '',
+            'horario' => '',
         ]);
 
         Cliente::create($request->all());
@@ -66,11 +69,14 @@ class ClienteController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'last_name' => '',
-            'email' => 'email|nullable',
+            'rut' => "required|unique:clientes,rut,$cliente->id",
+            'giro' => 'nullable',
+            'email' => "email|nullable|unique:clientes,rut,$cliente->email",
+            'web' => 'nullable',
             'phone' => 'numeric|nullable',
             'address' => '',
             'city' => '',
+            'horario' => '',
         ]);
 
         $cliente->update($request->all());
@@ -85,6 +91,6 @@ class ClienteController extends Controller
     {
         $cliente->delete();
 
-        return redirect()->route('admin.clientes.index')->with('info-danger', 'El producto se eliminó con éxito');
+        return redirect()->route('admin.clientes.index')->with('info-danger', 'El cliente se eliminó con éxito');
     }
 }

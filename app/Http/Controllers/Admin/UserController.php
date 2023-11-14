@@ -28,9 +28,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required|numeric',
-            'password' => 'required|min:4',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|numeric|unique:users,phone',
+            'password' => 'required|min:6',
         ]);
         
         // Hasheo de la contraseña
@@ -40,7 +40,9 @@ class UserController extends Controller
         // Creación de un nuevo usuario
         $user = User::create($userData);
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'El usuario se creó correctamente');
+        $user->roles()->sync($request->roles);
+
+        return redirect()->route('admin.users.index', $user)->with('info', 'El usuario se creó correctamente');
     }
 
     public function edit(User $user)
@@ -56,8 +58,8 @@ class UserController extends Controller
             'name' => 'required',
             'last_name' => 'required',
             'email' => "required|email|unique:users,email,$user->id",
-            'phone' => 'required|numeric',
-            'password' => 'required|min:4',
+            'phone' => "required|numeric|unique:users,phone,$user->id",
+            'password' => 'required|min:6',
         ]);
         
         // Hasheo de la contraseña
@@ -67,10 +69,9 @@ class UserController extends Controller
         // Creación de un nuevo usuario
         $user->update($userData);
 
-
         $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'El usuario se actualizó correctamente');
+        return redirect()->route('admin.users.index', $user)->with('info', 'El usuario se actualizó correctamente');
     }
 
     public function destroy(User $user)

@@ -135,7 +135,7 @@
                                     <a class="underline text-sm text-oscuro hover:text-principal rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-principal" href="{{ route('password.request') }}">
                                         {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
-                                    <x-button class="flex justify-center ml-1 mt-4 py-4 bg-principal hover:bg-medio text-lg text-blanco font-bold rounded-xl">
+                                    <x-button class="flex justify-center ml-1 mt-4 py-4 bg-principal focus:ring focus:ring-principal active:ring active:ring-principal active:text-principal focus:text-principal hover:bg-medio text-lg text-blanco font-bold rounded-xl transition ease-in-out duration-300">
                                         {{ __('Iniciar sesión') }}
                                     </x-button>
                                 @endif

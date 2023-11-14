@@ -19,11 +19,18 @@ class UsersIndex extends Component
         $this->resetPage();
     }
 
+    public function buscar() {
+        $this->resetPage();
+        $this->emit('render');
+    }
+
     public function render()
     {
 
         $users = User::where('name', 'LIKE', '%'.  trim($this->search) . '%')
-                        ->orWhere('email', 'LIKE', '%'.  trim($this->search) . '%')->paginate();
+                        ->orWhere('email', 'LIKE', '%'.  trim($this->search) . '%')                        
+                        ->latest('id')
+                        ->paginate(10);
 
         return view('livewire.admin.users-index', compact('users'));
     }

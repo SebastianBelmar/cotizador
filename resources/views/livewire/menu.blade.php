@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }">
+<nav x-data="{ open: false }" x-init="quitarClase()">
 
     {{-- BARRA SUPERIOR --}}
     <div class="bg-blanco w-full h-20 shadow-md shadow-sombra rounded-2xl flex justify-between items-center px-[8vw] z-50">
@@ -56,7 +56,7 @@
             <div x-data="{ url: window.location.href, palabraBuscada: 'roles' }">
                 <template x-if="url.includes(palabraBuscada)">
                     <span class="flex items-center">
-                        <i x-bind:class="{ 'ri-file-text-line': true }" class=" text-3xl mr-4 text-principal"></i>
+                        <i x-bind:class="{ 'ri-user-settings-line': true }" class=" text-3xl mr-4 text-principal"></i>
                         <p x-text="'Lista de roles'" class="text-oscuro text-2xl font-medium"></p>
                     </span>
                 </template>
@@ -71,8 +71,8 @@
                 </button>
             </div>
 
-            <div x-show="open" x-on:click.away="open = false"
-                class="z-40 absolute right-0 mt-2 w-36 origin-top-right rounded-lg bg-white py-2 shadow-lg border-[1px] border-principal"
+            <div id="user-menu" x-show="open" x-on:click.away="open = false"
+                class="hidden z-40 absolute right-0 mt-2 w-36 origin-top-right rounded-lg bg-white py-2 shadow-lg border-[1px] border-principal"
                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                     tabindex="-1" id="user-menu-item-0">Tu Perfil</a>
@@ -90,7 +90,7 @@
 
     <!-- Menú lateral -->
 
-    <div class="w-[20.5rem] bg-blanco rounded-r-3xl fixed inset-y-0 z-50 h-[100vh] transform transition-all" x-show="open"
+    <div id="menu" class="w-[20.5rem] bg-blanco rounded-r-3xl fixed inset-y-0 z-50 h-[100vh] transform transition-all hidden" x-show="open"
         x-transition:enter="ease-in duration-500"
         x-transition:enter-start="-translate-x-[22rem]"
         x-transition:enter-end="translate-x-0"
@@ -165,7 +165,7 @@
                         @endcan
                     </ul>
                     {{-- ADMINISTRADOR --}}
-                    @can('admin.productos.index', 'admin.users.index', 'admin.users.index')
+                    @can('admin.productos.index', 'admin.users.index', 'admin.roles.index', 'admin.datos-empresas.edit')
                     <p class="text-medioClaro text-2xl mt-8 mb-12 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
                     @endcan
                     <ul class="pb-0 w-full pr-4 flex flex-col justify-between">
@@ -181,6 +181,20 @@
                                 <i :class="isHovered ? 'text-blanco' : 'text-medioClaro'"
                                     class="ri-arrow-right-up-line text-3xl"></i>
                             </a>
+                        @endcan
+
+                        @can('admin.datos-empresas.edit')
+                        <a href="{{  route('admin.datos-empresas.edit', 1) }}"
+                            class="mb-1 py-3 px-5 text-oscuro hover:rounded-md text-lg font-medium hover:bg-principal hover:text-blanco flex justify-between items-center"
+                            x-data="{ isHovered: false }" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+                            <span class="flex items-center">
+                                <i :class="isHovered ? 'text-blanco' : 'text-principal'"
+                                    class="ri-building-line text-3xl mr-4 "></i>
+                                    Datos Empresas
+                            </span>
+                            <i :class="isHovered ? 'text-blanco' : 'text-medioClaro'"
+                                class="ri-arrow-right-up-line text-3xl"></i>
+                        </a>
                         @endcan
 
                         @can('admin.users.index')
@@ -239,7 +253,7 @@
     </div>
 
     <!-- Fondo oscuro al hacer clic fuera del menú -->
-    <div class="fixed inset-0 z-40 transform transition-all" x-show="open" @click="open = false"
+    <div id="fondo" class="fixed inset-0 z-40 transform transition-all hidden" x-show="open"
         x-transition:enter="ease-in duration-500"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-50"
@@ -247,8 +261,19 @@
         x-transition:leave-start="opacity-50"
         x-transition:leave-end="opacity-0"
     >
-        <div class="absolute inset-0 bg-oscuro opacity-50"></div>
+        <div class="absolute inset-0 bg-oscuro opacity-50" @click="open=false"></div>
     </div>
 
+    <script>
+        function quitarClase() {
+            var elemento = document.getElementById('menu');
+            var user = document.getElementById('user-menu');
+            var fondo = document.getElementById('fondo');
+
+            elemento.classList.remove('hidden');
+            user.classList.remove('hidden');
+            fondo.classList.remove('hidden');
+        }
+    </script>
 
 </nav>

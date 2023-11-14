@@ -20,7 +20,7 @@ class ProductoFactory extends Factory
         return [
             'code' => $this->faker->unique()->regexify('[0-9]{3}'),
             'name' => $name,
-            'description' => $this->faker->unique()->sentence(3),
+            'description' => $this->faker->unique()->sentence(10),
             'price' => $this->faker->randomFloat(2, 1000, 5000),
         ];
     }

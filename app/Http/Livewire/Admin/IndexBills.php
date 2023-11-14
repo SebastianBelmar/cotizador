@@ -15,11 +15,11 @@ class IndexBills extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $search = "";
+
 
     public function render()
     {
-
         $clientes = Cliente::where('name', 'like', '%' . trim($this->search) . '%')->get();
 
         $clienteIds = $clientes->pluck('id');
@@ -50,6 +50,12 @@ class IndexBills extends Component
 
 
         return view('livewire.admin.index-bills', compact('cotizaciones', 'clientes', 'usuarios'));
+
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
     public function create()

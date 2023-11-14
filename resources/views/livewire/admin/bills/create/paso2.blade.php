@@ -29,13 +29,13 @@
         >
 
         <div class="w-full flex flex-col p-4">
-            <button class="bg-principal font-semibold text-blanco text-lg rounded-full p-4 w-full mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-blanco" @click="open2=true; item=itemServer; selectProduct=selectProductServer; selected = itemNombre;">
+            <button class="bg-principal font-semibold text-blanco text-lg rounded-full p-4 w-full mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-blanco" @click="open2=true; item=itemServer; selectProduct=selectProductServer; selected = itemNombre; Livewire.emit('reinicioVariables');" >
                 AGREGAR PRODUCTO
             </button>
 
             <button 
                 class="bg-medio mt-5 font-semibold text-blanco text-lg rounded-full p-4 w-full mx-auto hover:ring-2 hover:ring-medio hover:text-medio hover:bg-blanco"
-                @click="ver2= !ver2">
+                @click="ver2= !ver2; item=itemServer; selectProduct=selectProductServer; selected = itemNombre; Livewire.emit('reinicioVariables');" >
                 VER
             </button>
         </div>
