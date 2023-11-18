@@ -69,7 +69,10 @@ class UserController extends Controller
         // Creación de un nuevo usuario
         $user->update($userData);
 
-        $user->roles()->sync($request->roles);
+        if($user->id != 1) {
+            $user->roles()->sync($request->roles);
+        } 
+
 
         return redirect()->route('admin.users.index', $user)->with('info', 'El usuario se actualizó correctamente');
     }

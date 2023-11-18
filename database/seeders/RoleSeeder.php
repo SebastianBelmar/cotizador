@@ -19,8 +19,8 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'admin.users.index','description' => 'Ver listado de usuarios'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.users.create','description' => 'Crear usuarios'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.users.edit','description' => 'Asignar un rol'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.users.destroy','description' => 'Eliminar un rol'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.edit','description' => 'Editar usuarios'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.destroy','description' => 'Eliminar usuarios'])->syncRoles([$role1]);
 
         Permission::create(['name' => 'admin.roles.index','description' => 'Ver listado de roles'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.roles.create','description' => 'Crear roles'])->syncRoles([$role1]);
@@ -32,8 +32,8 @@ class RoleSeeder extends Seeder
         
         Permission::create(['name' => 'admin.productos.index','description' => 'Ver listado de productos'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.productos.create','description' => 'Crear productos'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.productos.edit','description' => 'Editar un producto'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.productos.destroy','description' => 'Eliminar un producto'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.productos.edit','description' => 'Editar productos'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.productos.destroy','description' => 'Eliminar productos'])->syncRoles([$role1]);
 
         Permission::create(['name' => 'admin.bills.index','description' => 'Ver listado de cotizaciones'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.bills.create','description' => 'Crear cotizaciones'])->syncRoles([$role1, $role2]);

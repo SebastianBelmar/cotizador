@@ -61,7 +61,7 @@
                             @can('admin.roles.edit')
                             <a href="{{route('admin.roles.edit', $role)}}" class="hover:text-principal hover:blur-[0.6px] pb-1 mr-6"><i class="ri-edit-line text-xl"></i></a>
                             @endcan
-            
+                            @if($role->id != 1)
                             @can('admin.roles.destroy')
                             <form action="{{route('admin.roles.destroy', $role)}}" method="POST" class="hover:blur-[0.6px]">
                                 @csrf
@@ -69,7 +69,7 @@
                                 <button type=submit class="hover:text-danger pb-1"><i class="ri-delete-bin-line text-xl"></i></button>
                             </form>
                             @endcan
-            
+                            @endif
                         </div>
             
                     </div>

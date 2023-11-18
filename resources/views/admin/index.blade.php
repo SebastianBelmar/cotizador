@@ -28,8 +28,12 @@
                     </div>
                 </a>
             </div>
+            @can('admin.productos.index','admin.users.index','admin.roles.index')
             <p class="text-oscuro text-4xl mt-8 mb-12 font-bold px-4 sm:px-0 lg:pr-16"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+            @endcan
+
             <div class="grid grid-cols-3 gap-6 px-4 sm:px-0 lg:pr-16">
+                @can('admin.productos.index')
                 <a href="{{ route('admin.productos.index') }}"
                     class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
                     <div class="flex justify-end">
@@ -42,7 +46,9 @@
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Productos</p>
                     </div>
                 </a>
+                @endcan
 
+                @can('admin.users.index')
                 <a href="{{ route('admin.users.index') }}"
                     class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
                     <div class="flex justify-end">
@@ -55,7 +61,9 @@
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Usuarios</p>
                     </div>
                 </a>
+                @endcan
 
+                @can('admin.roles.index')
                 <a href="{{ route('admin.roles.index') }}"
                     class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
                     <div class="flex justify-end">
@@ -68,7 +76,7 @@
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Roles</p>
                     </div>
                 </a>
-
+                @endcan
             </div>
         </div>
 
