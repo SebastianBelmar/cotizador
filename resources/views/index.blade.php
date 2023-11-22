@@ -107,7 +107,7 @@
 
                 @else
                 <div class="flex flex-col max-w-[400px] md:w-[600px] justify-center mx-auto my-auto px-4 z-40" >
-                    <p class="mx-auto text-[28px] text-oscuro md:hidden mb-4 z-40">SISTEMA DE <span class="font-bold">COTIZACIÓN</span></p>
+                    <p class="mx-auto text-[28px] text-oscuro md:hidden mt-12 mb-4 z-40">SISTEMA DE <span class="font-bold">COTIZACIÓN</span></p>
                     <div class="text-oscuro text-xl text-bold py-4 px-4 mb-4 text-center border-principal border-b-2 rounded-t-2xl bg-blanco shadow-md shadow-sombra z-40"><i class="text-principal ri-user-line mr-3"></i>Control de Acceso</div>
                     <div class="p-6 rounded-2xl z-40 bg-blanco shadow-md shadow-sombra" >
                         <x-validation-errors class="mb-4" />

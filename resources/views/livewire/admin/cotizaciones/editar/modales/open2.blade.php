@@ -17,7 +17,7 @@
             <div x-data="{productoCodigo: @entangle('productoCodigo'),  productoDescripcion: @entangle('productoDescripcion'), productoPrecio: @entangle('productoPrecio'), productoLargo: @entangle('productoLargo').defer, productoAncho: @entangle('productoAncho').defer, productoCantidad: @entangle('productoCantidad').defer}">
 
                 <div class="mt-4">
-                    <p class="text-lg text-oscuro">Seleccionar Producto por Código</p>
+                    <p class="text-lg text-oscuro cursor-text" style="user-select: text;">Seleccionar Producto por Código</p>
 
                     @include('livewire.admin.cotizaciones.crear.inputs.input2')
 

@@ -2,7 +2,7 @@
     <input
         class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro  focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-xl placeholder:font-normal "
         wire:model='descripcion'
-        @click="openInput3 = !openInput3"
+        @focus="openInput3 = true"
         type="text"
         placeholder="Buscar detalles ya creados"
     >
@@ -51,10 +51,10 @@
 
 
                     <div class="col-span-2 text-start">
-                        <button class="bg-blanco border border-principal rounded-full text-principal p-2 px-4  lg:px-6 font-normal hover:ring-2 hover:ring-principal w-full text-base  md:text-lg"
+                        <button class="bg-blanco border border-principal rounded-full  text-principal p-2 px-4  lg:px-6 font-normal hover:ring-2 hover:ring-principal w-full text-base  md:text-lg"
                         wire:click="guardarInputDetalle({{$detalles->id}})"
                             >
-                            <p class="hidden sm:flex">Seleccionar</p>
+                            <p class="hidden sm:flex justify-center w-full">Seleccionar</p>
                             <i class="sm:hidden ri-add-line font-bold"></i>
                         </button>
 

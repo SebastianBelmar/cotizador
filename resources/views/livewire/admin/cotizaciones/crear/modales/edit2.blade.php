@@ -4,7 +4,7 @@
         <div class="bg-blanco w-full py-2 rounded-t-3xl border-principal border-b-4 grid grid-cols-12 gap-4 px-6 lg:px-12">
             <p class="col-span-1 text-[3.5rem] font-semibold text-oscuro text-start">2</p>
             <div class="col-span-10 flex flex-col items-center justify-center my-auto">
-                <p class="text-2xl text-oscuro font-semibold">Agregar Producto(s)</p>
+                <p class="text-2xl text-oscuro font-semibold">Editar Producto</p>
             </div>
             <div class="col-span-1 h-full flex items-center justify-end">
                 <i class="ri-box-3-line text-principal text-4xl"></i>
@@ -133,7 +133,7 @@
 
 
                 <div class="grid grid-cols-2 gap-4 my-6">
-                    <button @click="open2= false"
+                    <button @click="openEdit2= false"
                         class="w-full bg-blanco text-lg lg:text-2xl font-bold border-2 lg:border-4 hover:border-2 border-danger rounded-xl text-danger hover:text-blanco  hover:bg-danger hover:border-blanco py-4"
                     >
                         CERRAR

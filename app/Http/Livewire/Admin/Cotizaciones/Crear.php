@@ -12,6 +12,8 @@ use App\Models\ItemProducto;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class Crear extends Component
 {
 
@@ -132,6 +134,8 @@ class Crear extends Component
     public $terminosGenerales = [], $terminosCotizacion = [];
 
     public function mount() {
+        $this->fecha = Carbon::now()->toDateString();
+        //dd($this->fecha);
         $this->clientes = Cliente::all();
         $this->productos = Producto::all();
 
@@ -173,6 +177,11 @@ class Crear extends Component
         }
         $this->detallesCotizacion = $ArrayDetalles;
 
+    }
+
+    public function open2(){
+        $this->open2 = true;
+        $this->reinicioVariables();
     }
 
     public function guardarInputCliente($id) {

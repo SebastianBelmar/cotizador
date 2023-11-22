@@ -2,7 +2,7 @@
     <input
         class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro  focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-xl placeholder:font-normal "
         wire:model='descripcionTermino'
-        @click="openInput4 = !openInput4"
+        @focus="openInput4 = true"
         type="text"
         placeholder="Buscar términos ya creados"
     >
@@ -54,7 +54,7 @@
                         <button class="bg-blanco border border-principal rounded-full text-principal p-2 px-4  lg:px-6 font-normal hover:ring-2 hover:ring-principal w-full text-base  md:text-lg"
                         wire:click="guardarInputTermino({{$termino->id}})"
                             >
-                            <p class="hidden sm:flex">Seleccionar</p>
+                            <p class="hidden sm:flex justify-center w-full">Seleccionar</p>
                             <i class="sm:hidden ri-add-line font-bold"></i>
                         </button>
 

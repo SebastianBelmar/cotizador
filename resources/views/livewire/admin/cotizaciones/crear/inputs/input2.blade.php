@@ -2,7 +2,7 @@
     <input
         class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro  focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
         wire:model='codigo'
-        @click="openInput2 = !openInput2"
+        @focus="openInput2 = true"
         type="text"
         placeholder="Buscar Producto por Nombre o Código"
     >

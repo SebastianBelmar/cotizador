@@ -1,6 +1,6 @@
 <div>
 
-    <button class="bg-success text-blanco p-4 rounded-2xl w-full text-xl font-semibold hover:ring hover:ring-success hover:bg-blanco hover:text-success" wire:click="$set('open', true)">
+    <button class="bg-oscuro text-blanco p-4 rounded-2xl w-full text-base sm:text-xl font-semibold hover:ring hover:ring-oscuro hover:bg-blanco hover:text-oscuro" wire:click="$set('open', true)">
          Enviar PDF <i class="ri-mail-line ml-2"></i>
     </button>
 

@@ -3,7 +3,7 @@
     <input
         class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro  focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
         wire:model='cliente_id'
-        @click="openInput1 = !openInput1"
+        @focus="openInput1 = true"
         type="text"
         placeholder="Buscar cliente por nombre o id"
     >
