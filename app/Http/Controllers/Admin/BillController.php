@@ -16,6 +16,9 @@ class BillController extends Controller
     public function __construct()
     {
         $this->middleware('can:admin.bills.destroy')->only('destroy');
+        $this->middleware('can:admin.bills.index')->only('index');
+        $this->middleware('can:admin.bills.create')->only('create');
+        $this->middleware('can:admin.bills.edit')->only('edit');
     }
  
     public function index()

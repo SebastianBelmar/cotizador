@@ -62,11 +62,11 @@
                                 <div class=" h-44 md:w-[270px] flex flex-col">
                                     <div class="h-32 w-12/12 mb-1 flex flex-col items-start justify-center">
                                         <p class="pl-10 md:pl-4  text-[14px] text-oscuro font-light flex items-center"><i class="text-lg text-principal ri-user-line pr-1"></i> Usuario</p>
-                                        <p class="pl-10 md:pl-4 text-2xl text-oscuro font-semibold">{{ucfirst(auth()->user()->name) }}  {{ucfirst(auth()->user()->last_name) }}</p>
+                                        <p class="pl-10 md:pl-4 text-xl md:text-2xl text-oscuro font-semibold">{{ucfirst(auth()->user()->name) }}  {{ucfirst(auth()->user()->last_name) }}</p>
                                     </div>
                                     <div class="h-32 w-12/12 flex flex-col">
                                         <p class="pl-10 md:pl-4  text-[14px] text-oscuro font-light flex items-center"><i class="text-2xl text-principal ri-pass-valid-line pr-2"></i> Rol</p>
-                                        <p class="pl-10 md:pl-4 text-2xl text-oscuro font-semibold">
+                                        <p class="pl-10 md:pl-4 text-xl md:text-2xl text-oscuro font-semibold">
                                             @foreach ( auth()->user()->getRoleNames() as $role)
                                                 {{$role}}
                                             @endforeach
@@ -77,7 +77,7 @@
                                 <div class="pb-6 md:pb-0 md:h-44 md:w-[180px] flex flex-row  justify-between md:flex-col">
                                     <div class="md:h-32 w-12/12 mb-1 flex flex-col items-start justify-center">
                                         <p class="pl-10 md:pl-0  text-[14px] text-oscuro font-light flex items-center"><i class="text-lg text-principal ri-links-line pr-1"></i> Estado</p>
-                                        <p class="pl-10 md:pl-0 text-2xl text-oscuro font-semibold">Conectado</p>
+                                        <p class="pl-10 md:pl-0 text-xl md:text-2xl text-oscuro font-semibold">Conectado</p>
                                     </div>
                                     <div class="px-10 md:px-0 md:h-32 w-12/12 flex flex-col items-start justify-center">
 
@@ -154,7 +154,7 @@
         @auth
             <div class="hidden md:flex justify-center items-center w-full md:w-1/2 alto pr-20 z-40">
 
-                <div class="flex flex-col w-[400px] md:w-[500px] mx-auto my-auto px-4 z-40" >
+                <div class="flex flex-col w-[400px] md:w-[450px] mx-auto my-auto pl-4 pt-8 z-40">
 
                     <div x-data="{ lottieAnimation: '/json/animacion2.json' }" x-init="() => {
                         lottie.loadAnimation({
@@ -170,7 +170,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('admin.home') }}" class="bg-principal w-full ml-11/12 mt-12 py-6 px-2 text-lg font-semibold text-center rounded-2xl text-blanco hover:bg-blanco hover:ring-2 hover:ring-principal hover:text-principal z-40">GESTIONAR COTIZACIONES <i class="ri-arrow-right-up-line ml-4 text-light text-3xl"></i> </a>
+                    <a href="{{ route('admin.home') }}" class="bg-principal w-full ml-11/12 mt-12 py-6 px-2 text-sm lg:text-lg font-semibold text-center rounded-2xl text-blanco hover:bg-blanco hover:ring-2 hover:ring-principal hover:text-principal z-40">GESTIONAR COTIZACIONES <i class="ri-arrow-right-up-line ml-4 text-light text-xl lg:text-3xl"></i> </a>
 
                     <div class="h-52 w-full"></div>
                 </div>

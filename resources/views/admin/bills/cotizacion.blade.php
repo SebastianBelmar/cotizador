@@ -152,7 +152,7 @@ input[type="number"] {
                     <th style="width: 10px;">Nombre</th>
                     <th style="width: 50%;" >Descripción</th>
                     <th style="width: 10px;text-align: center;">Cantidad</th>
-                    <th style="width: 10px;text-align: center;">M<sup>2</sup></th>
+                    <th style="width: 15px;text-align: center;">M<sup>2</sup></th>
                     <th style="width: 80px; text-align: center;">Precio Unitario</th>
                     <th style="width: 10px;text-align: center;white-space: nowrap;">Total (Neto)</th>
                 </tr>

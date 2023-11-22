@@ -44,33 +44,34 @@
 
 </div>
 
+
 @if($user->id == 1)
-    <div class="form-group">
+<div class="form-group">
+<h3 class="text-oscuro text-lg mb-2 mt-3">Asignar Rol</h3>
+@foreach ($roles as $role)
+    <div class="flex flex-col items-start justify-center">
+        <label class="flex items-center justify-center my-2">
+            @if($role->name == 'Administrador')
+                <input type="checkbox" class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-medio mr-2 pointer-events-none cursor-not-allowed" checked onclick="return false;">
+                <p class="text-oscuro">{{$role->name}} </p>
+            @else
+                <input type="checkbox" class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-principal mr-2 pointer-events-none cursor-not-allowed"  onclick="return false;">
+                <p class="text-oscuro">{{$role->name}} </p>
+            @endif
+        </label>
+    </div>
+@endforeach
+</div>
+@else
+<div class="form-group">
     <h3 class="text-oscuro text-lg mb-2 mt-3">Asignar Rol</h3>
     @foreach ($roles as $role)
         <div class="flex flex-col items-start justify-center">
             <label class="flex items-center justify-center my-2">
-                @if($role->name == 'Administrador')
-                    <input type="checkbox" class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-medio mr-2 pointer-events-none cursor-not-allowed" checked onclick="return false;">
-                    <p class="text-oscuro">{{$role->name}} </p>
-                @else
-                    <input type="checkbox" class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-principal mr-2 pointer-events-none cursor-not-allowed"  onclick="return false;">
-                    <p class="text-oscuro">{{$role->name}} </p>
-                @endif
+                {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-principal mr-2']) !!}
+                <p class="text-oscuro">{{$role->name}}</p>
             </label>
         </div>
     @endforeach
-    </div>
-@else
-    <div class="form-group">
-        <h3 class="text-oscuro text-lg mb-2 mt-3">Asignar Rol</h3>
-        @foreach ($roles as $role)
-            <div class="flex flex-col items-start justify-center">
-                <label class="flex items-center justify-center my-2">
-                    {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border p-2 mt-1 placeholder:text-lg text-principal mr-2']) !!}
-                    <p class="text-oscuro">{{$role->name}}</p>
-                </label>
-            </div>
-        @endforeach
-    </div>
+</div>
 @endif

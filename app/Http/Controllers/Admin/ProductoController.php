@@ -9,9 +9,14 @@ use App\Models\Producto;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.productos.index')->only('index');
+        $this->middleware('can:admin.productos.create')->only('create');
+        $this->middleware('can:admin.productos.edit')->only('edit');
+        $this->middleware('can:admin.productos.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $productos = Producto::all();

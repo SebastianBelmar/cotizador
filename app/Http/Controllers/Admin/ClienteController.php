@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.clientes.index')->only('index');
+        $this->middleware('can:admin.clientes.create')->only('create');
+        $this->middleware('can:admin.clientes.edit')->only('edit');
+        $this->middleware('can:admin.clientes.destroy')->only('destroy');
+    }
+
     public function index()
     {
         return view('admin.clientes.index');
@@ -71,7 +76,7 @@ class ClienteController extends Controller
             'name' => 'required',
             'rut' => "required|unique:clientes,rut,$cliente->id",
             'giro' => 'nullable',
-            'email' => "email|nullable|unique:clientes,rut,$cliente->email",
+            'email' => "email|nullable|unique:clientes,email,$cliente->id",
             'web' => 'nullable',
             'phone' => 'numeric|nullable',
             'address' => '',

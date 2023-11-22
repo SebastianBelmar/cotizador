@@ -1,63 +1,160 @@
 <x-app-layout>
 
-    <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto grid grid-cols-2 bg-blanco mt-2">
+    <div class="w-full sm:w-10/12  sm:min-w-[480px] max-w-[1920px] h-full mx-auto grid grid-cols-2 bg-blanco mt-2">
         <div class=" bg-claro w-full h-full col-span-2 lg:col-span-1">
-            <div class="grid grid-cols-2 gap-6 w-full py-12 px-4 sm:px-0 lg:pr-16">
-                <div class="bg-oscuro w-full h-36 col-span-2 rounded-3xl flex items-center justify-center px-auto">
+            <div class="grid grid-rows-3 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-6 w-full py-12 px-4 sm:px-0 lg:pr-16">
+                <div class="bg-oscuro w-full h-24 sm:h-36 col-span-2 rounded-3xl flex items-center justify-center px-auto">
                     <p class="text-2xl md:text-4xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-blanco font-bold ">SISTEMA DE COTIZACIÓN</p>
                 </div>
+                @can('admin.bills.index')
                 <a href="{{ route('admin.bills.index') }}"
-                    class="bg-blanco w-full h-32 md:h-40 lg:h-32 2xl:h-40 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
-                    <div class="flex justify-between">
+                    class="bg-blanco w-full mt-4 sm:mt-0 h-20 sm:h-32 md:h-40 lg:h-32 2xl:h-40 col-span-2 sm:col-span-1  rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-file-text-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl">Cotizaciones</p>
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+
+                    <div class="hidden sm:flex justify-between">
                         <i class="ri-file-text-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-principal"></i>
                         <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
                     </div>
-                    <div class="flex justify-start">
+                    <div class="hidden sm:flex justify-start">
                         <p class="text-oscuro font-semibold text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl">Cotizaciones</p>
                     </div>
                 </a>
+                @endcan
 
+                @can('admin.clientes.index')
                 <a href="{{ route('admin.clientes.index') }}"
-                    class="bg-blanco w-full h-32 md:h-40 lg:h-32 2xl:h-40 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
-                    <div class="flex justify-between">
+                    class="bg-blanco w-full mt-4 sm:mt-0 h-20 sm:h-32 md:h-40 lg:h-32 2xl:h-40 col-span-2 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-user-2-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl">Clientes</p>
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+
+                    <div class="hidden sm:flex justify-between">
                         <i class="ri-user-2-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-principal"></i>
                         <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
                     </div>
-                    <div class="flex justify-start">
+                    <div class="hidden sm:flex justify-start">
                         <p class="text-oscuro font-semibold text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl">Clientes</p>
                     </div>
                 </a>
+                @endcan
             </div>
             @can('admin.productos.index','admin.users.index','admin.roles.index')
-            <p class="text-oscuro text-4xl mt-8 mb-12 font-bold px-4 sm:px-0 lg:pr-16"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+            <p class="text-oscuro text-3xl sm:text-4xl sm:mt-8 mb-12 font-bold px-4 sm:px-0 lg:pr-16"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
             @endcan
 
             <div class="grid grid-cols-3 gap-6 px-4 sm:px-0 lg:pr-16">
                 @can('admin.productos.index')
                 <a href="{{ route('admin.productos.index') }}"
-                    class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
-                    <div class="flex justify-end">
+                    class="bg-blanco w-full h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-box-3-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Productos</p>
                         <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
                     </div>
-                    <div class="flex items-center justify-center">
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
                         <i class="ri-box-3-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
                     </div>
-                    <div class="flex justify-center">
+                    <div class="hidden sm:flex justify-center">
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Productos</p>
+                    </div>
+                </a>
+                @endcan
+
+                @can('admin.detalles.index')
+                <a href="{{ route('admin.detalles') }}"
+                    class="bg-blanco w-full h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-file-list-3-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Detalles</p>
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
+                        <i class="ri-file-list-3-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                    </div>
+                    <div class="hidden sm:flex justify-center">
+                        <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Detalles</p>
+                    </div>
+                </a>
+                @endcan
+
+                @can('admin.terminos.index')
+                <a href="{{ route('admin.terminos') }}"
+                    class="bg-blanco w-full mb-12 h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-shake-hands-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Términos</p>
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
+                        <i class="ri-shake-hands-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                    </div>
+                    <div class="hidden sm:flex justify-center">
+                        <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Términos</p>
+                    </div>
+                </a>
+                @endcan
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 px-4 sm:px-0 lg:pr-16">
+                @can('admin.datos-empresas.edit')
+                <a href="{{ route('admin.datos-empresas.edit', 1) }}"
+                    class="bg-blanco w-full h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-building-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Empresa</p>
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
+                        <i class="ri-building-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                    </div>
+                    <div class="hidden sm:flex justify-center">
+                        <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Empresa</p>
                     </div>
                 </a>
                 @endcan
 
                 @can('admin.users.index')
                 <a href="{{ route('admin.users.index') }}"
-                    class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
-                    <div class="flex justify-end">
+                    class="bg-blanco w-full h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-group-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Usuarios</p>
                         <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
                     </div>
-                    <div class="flex items-center justify-center">
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
                         <i class="ri-group-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
                     </div>
-                    <div class="flex justify-center">
+                    <div class="hidden sm:flex justify-center">
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Usuarios</p>
                     </div>
                 </a>
@@ -65,14 +162,21 @@
 
                 @can('admin.roles.index')
                 <a href="{{ route('admin.roles.index') }}"
-                    class="bg-blanco w-full h-40 md:h-56 lg:h-44 2xl:h-56 col-span-1 rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
-                    <div class="flex justify-end">
+                    class="bg-blanco w-full mb-12 h-20 sm:h-40 md:h-56 lg:h-44 2xl:h-56 col-span-3 sm:col-span-1 rounded-xl sm:rounded-3xl shadow-lg shadow-sombra flex flex-col justify-between p-6 transform ring-principal hover:ring-2 transition-all duration-300 hover:scale-[103%] ease-out pointer-events-auto">
+
+                    <div class="flex sm:hidden justify-between">
+                        <i class="ri-user-settings-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
+                        <p class="text-oscuro w-full px-4 font-semibold text-2xl sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Roles</p>
                         <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
                     </div>
-                    <div class="flex items-center justify-center">
+
+                    <div class="hidden sm:flex justify-end">
+                        <i class="ri-arrow-right-up-line text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl text-medioClaro"></i>
+                    </div>
+                    <div class="hidden sm:flex items-center justify-center">
                         <i class="ri-user-settings-line text-3xl md:text-5xl lg:text-3xl 2xl:text-5xl text-principal"></i>
                     </div>
-                    <div class="flex justify-center">
+                    <div class="hidden sm:flex justify-center">
                         <p class="text-oscuro font-semibold text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl">Roles</p>
                     </div>
                 </a>

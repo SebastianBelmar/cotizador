@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class DatosEmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.datos-empresas.index')->only('index');
+        $this->middleware('can:admin.datos-empresas.create')->only('create');
+        $this->middleware('can:admin.datos-empresas.edit')->only('edit');
+        $this->middleware('can:admin.datos-empresas.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $datosEmpresas = DatosEmpresa::all();

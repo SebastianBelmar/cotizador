@@ -14,7 +14,7 @@
             <div class="pt-4 text-xl font-bold  rounded-t-3xl text-oscuro text-center">
                 <button class="w-full bg-blanco text-lg lg:text-xl font-semibold border-principal border lg:border-2 rounded-xl text-principal hover:text-principal hover:bg-claro hover:border-principal py-4 mb-4" wire:click="$set('nuevo4', true)">AGREGAR NUEVO TÉRMINO</button>
 
-                @include('livewire.admin.cotizaciones.crear.inputs.input4')
+                @include('livewire.admin.cotizaciones.editar.inputs.input4')
             </div>
         </div>
     </x-slot>

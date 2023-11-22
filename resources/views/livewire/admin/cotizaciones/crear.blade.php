@@ -27,5 +27,14 @@
         @include('livewire.admin.cotizaciones.crear.paso4')
     </div>  
 
-    <button class="mb-8 mt-4 w-full text-center text-blanco text-2xl font-semibold rounded-2xl bg-principal p-6 hover:ring-2 hover:ring-principal focus:ring-2 focus:ring-medio hover:bg-blanco hover:text-principal focus:text-medio focus:bg-blanco" wire:click="crearCotizacion">CREAR COTIZACIÓN</button>
+    <div class="w-full grid grid-flow-col grid-cols-2 gap-4 my-8">
+        <a class="col-span-1 w-full text-center text-blanco text-base sm:text-lg lg:text-2xl font-semibold rounded-2xl bg-danger px-2 sm:px-6 p-6 hover:ring-2 hover:ring-danger focus:ring-2 focus:ring-danger hover:bg-blanco hover:text-danger focus:text-danger focus:bg-blanco"
+        href="{{ route('admin.bills.index') }}"
+        >
+            <p>CANCELAR</p>
+        </a>
+
+        <button class="col-span-1 w-full text-center text-blanco text-base sm:text-lg lg:text-2xl font-semibold rounded-2xl bg-principal px-2 sm:px-6 p-6 hover:ring-2 hover:ring-principal focus:ring-2 focus:ring-medio hover:bg-blanco hover:text-principal focus:text-medio focus:bg-blanco" wire:click="crearCotizacion">CREAR COTIZACIÓN</button>
+    </div>
+
 </div>

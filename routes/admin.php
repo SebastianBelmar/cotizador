@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\CotizacioneController;
 use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\DatosEmpresaController;
+use App\Http\Controllers\Admin\DetalleController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TerminoController;
 use App\Http\Controllers\Admin\UserController;
 
 Route::get('home', [HomeController::class, 'index'])->name('admin.home');
@@ -19,3 +21,5 @@ Route::resource('cotizaciones', CotizacioneController::class)->names('admin.coti
 Route::resource('bills', BillController::class)->names('admin.bills');
 Route::resource('clientes', ClienteController::class)->names('admin.clientes');
 Route::resource('datos-empresas', DatosEmpresaController::class)->middleware('can:admin.datos-empresas.edit')->names('admin.datos-empresas');
+Route::get('detalles', [DetalleController::class, 'index'])->name('admin.detalles');
+Route::get('terminos', [TerminoController::class, 'index'])->name('admin.terminos');

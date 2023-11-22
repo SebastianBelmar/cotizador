@@ -2,19 +2,19 @@
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
         <div class="flex justify-between flex-1 2xl:hidden">
             @if ($paginator->onFirstPage())
-                <span class="relative inline-flex items-center px-6 py-5 text-sm font-medium text-gray-500 bg-white shadow-md shadow-sombra cursor-default leading-5 rounded-l-3xl">
+                <span class="relative inline-flex items-center px-3 sm:px-5 py-5 text-sm font-medium text-gray-500 bg-white shadow-md shadow-sombra cursor-default leading-5 rounded-l-3xl">
                     <i class="ri-arrow-left-s-line  text-2xl mr-2"></i>
                     Anterior
                 </span>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="relative inline-flex items-center px-6 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra leading-5 rounded-l-3xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
+                <a href="{{ $paginator->previousPageUrl() }}" class="relative inline-flex items-center px-3 sm:px-5 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra leading-5 rounded-l-3xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
                     <i class="ri-arrow-left-s-line  text-2xl mr-2"></i>
                     Anterior
                 </a>
             @endif
 
             <div class="flex justify-center items-center">
-                <p class="text-md text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1">
+                <p class="text-xs md:text-md text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1 md:gap-1">
                     <span class="col-span-1">{!! __('Showing') !!}</span>
                     @if ($paginator->firstItem())
                         <span class="font-semibold col-span-1">{{ $paginator->firstItem() }}
@@ -28,12 +28,12 @@
             </div>
 
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-6 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-3xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
+                <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-3 sm:px-5 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-3xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
                     Siguiente
                     <i class="ri-arrow-right-s-line text-2xl ml-2"></i>
                 </a>
             @else
-                <span class="relative inline-flex items-center px-6 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-3xl">
+                <span class="relative inline-flex items-center px-3 sm:px-5 py-5 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-3xl">
                     Siguiente
                     <i class="ri-arrow-right-s-line text-2xl ml-2"></i>
                 </span>
@@ -43,7 +43,7 @@
         @if($paginator->total()/10 <= 9)
             <div class="hidden flex-1 2xl:flex items-center justify-start ">
                 <div class="absolute">
-                    <p class="text-md text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1">
+                    <p class="text-xs md:text-md text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1">
                         <span class="col-span-1">{!! __('Showing') !!}</span>
                         @if ($paginator->firstItem())
                             <span class="font-semibold col-span-1">{{ $paginator->firstItem() }}
@@ -121,25 +121,37 @@
             </div>
         @else
             <div class="hidden 2xl:flex justify-between flex-1 ">
-                @if ($paginator->onFirstPage())
-                <span class="relative inline-flex items-center px-6 py-4 text-sm font-medium text-gray-500 bg-white shadow-md shadow-sombra cursor-default leading-5 rounded-l-2xl">
+            @if ($paginator->onFirstPage())
+                <span class="relative inline-flex items-center px-3 sm:px-5 py-4 text-sm font-medium text-gray-500 bg-white shadow-md shadow-sombra cursor-default leading-5 rounded-l-2xl">
                     <i class="ri-arrow-left-s-line  text-2xl mr-2"></i>
                     Anterior
                 </span>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="relative inline-flex items-center px-6 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra leading-5 rounded-l-2xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
+                <a href="{{ $paginator->previousPageUrl() }}" class="relative inline-flex items-center px-3 sm:px-5 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra leading-5 rounded-l-2xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
                     <i class="ri-arrow-left-s-line  text-2xl mr-2"></i>
                     Anterior
                 </a>
             @endif
-
+            <div class="flex justify-center items-center">
+                <p class="text-xs md:text-base text-gray-700 leading-5 grid grid-flow-row grid-row-2 gap-1 md:gap-1">
+                    <span class="col-span-1">{!! __('Showing') !!}</span>
+                    @if ($paginator->firstItem())
+                        <span class="font-semibold col-span-1">{{ $paginator->firstItem() }}
+                        {!! __('to') !!}
+                        {{ $paginator->lastItem() }}</span>
+                    @else
+                        {{ $paginator->count() }}
+                    @endif
+                    <span class="font-semibold col-span-2"> {!! __('of') !!} {{ $paginator->total() }} {!! __('results') !!}</span>
+                </p>
+            </div>
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-6 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-2xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
+                <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-3 sm:px-5 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-r-2xl hover:text-medio focus:outline-none focus:ring ring-medioClaro focus:border-medio active:bg-claro active:text-oscuro transition ease-in-out duration-150">
                     Siguiente
                     <i class="ri-arrow-right-s-line text-2xl ml-2"></i>
                 </a>
             @else
-                <span class="relative inline-flex items-center px-6 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-l-2xl">
+                <span class="relative inline-flex items-center px-3 sm:px-5 py-4 text-sm font-medium text-oscuro bg-blanco shadow-md shadow-sombra cursor-default leading-5 rounded-l-2xl">
                     Siguiente
                     <i class="ri-arrow-right-s-line text-2xl ml-2"></i>
                 </span>

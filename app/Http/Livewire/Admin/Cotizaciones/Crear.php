@@ -299,7 +299,6 @@ class Crear extends Component
 
         $this->icon3 = true;
         $this->nuevo3 = false;
-
     }
 
     public $nuevoTermino;
@@ -507,6 +506,8 @@ class Crear extends Component
 
     public $descripcion, $descripcionTermino;
 
+    public $numeroProductos = 0;
+
     public function render()
     {
         $this->clientes = Cliente::where('name', 'like', '%' . trim($this->cliente_id) . '%')
@@ -519,7 +520,7 @@ class Crear extends Component
 
         $this->terminosGenerales = DetallesTerminosGenerale::where('description', 'like', '%' . trim($this->descripcionTermino) . '%')->where('status', 2)->get();
 
-
+        $this->numeroProductos = count($this->datosProductos);
 
         //dd($this->detallesCotizacion);
 

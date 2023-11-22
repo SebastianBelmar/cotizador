@@ -61,6 +61,26 @@
                     </span>
                 </template>
             </div>
+
+            <div x-data="{ url: window.location.href, palabraBuscada: 'detalles' }">
+                <template x-if="url.includes(palabraBuscada)">
+                    <span class="flex items-center">
+                        <i x-bind:class="{ 'ri-file-list-3-line': true }" class=" text-3xl mr-4 text-principal"></i>
+                        <p x-text="'Lista de detalles'" class="text-oscuro text-2xl font-medium hidden sm:flex"></p>
+                        <p x-text="'Detalles'" class="text-oscuro text-2xl font-medium sm:hidden flex"></p>
+                    </span>
+                </template>
+            </div>
+
+            <div x-data="{ url: window.location.href, palabraBuscada: 'terminos' }">
+                <template x-if="url.includes(palabraBuscada)">
+                    <span class="flex items-center">
+                        <i x-bind:class="{ 'ri-shake-hands-line': true }" class=" text-3xl mr-4 text-principal"></i>
+                        <p x-text="'Lista de términos'" class="text-oscuro text-2xl font-medium hidden sm:flex"></p>
+                        <p x-text="'Términos'" class="text-oscuro text-2xl font-medium sm:hidden flex"></p>
+                    </span>
+                </template>
+            </div>
         </div>
 
         <div class="relative ml-3 z-40" x-data="{ open: false }">
@@ -90,7 +110,7 @@
 
     <!-- Menú lateral -->
 
-    <div id="menu" class="w-[20.5rem] bg-blanco rounded-r-3xl fixed inset-y-0 z-50 h-[100vh] transform transition-all hidden" x-show="open"
+    <div id="menu" class="w-[19.5rem] bg-blanco rounded-r-3xl fixed inset-y-0 z-50 h-[100vh] transform transition-all hidden" x-show="open"
         x-transition:enter="ease-in duration-500"
         x-transition:enter-start="-translate-x-[22rem]"
         x-transition:enter-end="translate-x-0"
@@ -117,11 +137,12 @@
             </button>
         </div>
 
-        <div class="grid grid-row-12 rounded-r-3xl w-[20.5rem] bg-blanco h-[100vh] scroll-container overflow-y-auto overflow-x-hidden">
+        <div class="grid grid-row-12 rounded-r-3xl w-[19.5rem] bg-blanco h-[100vh] scroll-container overflow-y-auto overflow-x-hidden">
             {{-- logo --}}
-            <div class="w-[20.5rem] row-span-1 h-20 bg-blanco rounded-tr-3xl flex justify-start items-center px-6 border-b-[2px] border-claro">
-                <img class="h-10 w-auto" src="{{ asset('/icon/icon.svg') }}" alt="fipe">
+            <div class="w-[19.5rem]  row-span-1 h-20 bg-blanco rounded-tr-3xl flex justify-start items-center px-6 border-b-[2px] border-claro">
+                <img class="h-10 w-auto " src="{{ asset('/icon/icon.svg') }}" alt="fipe">
             </div>
+
             <!-- Contenido del menú aquí -->
             <div class="w-80 row-span-6 relative min-h-0 ">
                 <div class="flex flex-col items-start pl-6 h-full scroll-container overflow-y-auto">
@@ -165,8 +186,20 @@
                         @endcan
                     </ul>
                     {{-- ADMINISTRADOR --}}
-                    @can('admin.productos.index', 'admin.users.index', 'admin.roles.index', 'admin.datos-empresas.edit')
-                    <p class="text-medioClaro text-2xl mt-8 mb-12 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @can('admin.productos.index')
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @elsecan('admin.users.index') 
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @elsecan('admin.roles.index') 
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @elsecan('admin.datos-empresas.edit') 
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @elsecan('admin.detalles.index') 
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @elsecan('admin.terminos.index') 
+                    <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
+                    @else
+                        <div class="h-80"></div>
                     @endcan
                     <ul class="pb-0 w-full pr-4 flex flex-col justify-between">
 
@@ -182,6 +215,34 @@
                                     class="ri-arrow-right-up-line text-3xl"></i>
                             </a>
                         @endcan
+                        
+                        @can('admin.detalles.index')
+                        <a href="{{  route('admin.detalles') }}"
+                            class="mb-1 py-3 px-5 text-oscuro hover:rounded-md text-lg font-medium hover:bg-principal hover:text-blanco flex justify-between items-center"
+                            x-data="{ isHovered: false }" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+                            <span class="flex items-center">
+                                <i :class="isHovered ? 'text-blanco' : 'text-principal'"
+                                    class="ri-file-list-3-line text-3xl mr-4 "></i>
+                                    Detalles
+                            </span>
+                            <i :class="isHovered ? 'text-blanco' : 'text-medioClaro'"
+                                class="ri-arrow-right-up-line text-3xl"></i>
+                        </a>
+                        @endcan
+
+                        @can('admin.terminos.index')
+                        <a href="{{  route('admin.terminos') }}"
+                            class="mb-1 py-3 px-5 text-oscuro hover:rounded-md text-lg font-medium hover:bg-principal hover:text-blanco flex justify-between items-center"
+                            x-data="{ isHovered: false }" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+                            <span class="flex items-center">
+                                <i :class="isHovered ? 'text-blanco' : 'text-principal'"
+                                    class="ri-shake-hands-line text-3xl mr-4 "></i>
+                                    Términos
+                            </span>
+                            <i :class="isHovered ? 'text-blanco' : 'text-medioClaro'"
+                                class="ri-arrow-right-up-line text-3xl"></i>
+                        </a>
+                        @endcan
 
                         @can('admin.datos-empresas.edit')
                         <a href="{{  route('admin.datos-empresas.edit', 1) }}"
@@ -196,7 +257,6 @@
                                 class="ri-arrow-right-up-line text-3xl"></i>
                         </a>
                         @endcan
-
                         @can('admin.users.index')
                             <a href="{{ route('admin.users.index') }}"
                                 class="mb-1 py-3 px-5 text-oscuro hover:rounded-md text-lg font-medium hover:bg-principal hover:text-blanco flex justify-between items-center"

@@ -1,7 +1,7 @@
     <x-app-layout>
 
         {{-- PAGINA --}}
-        <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
+        <div class="w-full md:w-10/12 p-4 md:min-w-[640px] max-w-[920px] h-full mx-auto bg-claro mt-2">
             <div class="mt-4">
 
                 @if (session('info'))
@@ -28,7 +28,7 @@
             
             
                         <div class="mb-6 w-full h-20 order-1 ">
-                            <a href="{{route('admin.roles.create')}}" class="bg-principal w-full h-20 rounded-2xl flex justify-between items-center px-12 shadow-md shadow-sombra hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
+                            <a href="{{route('admin.roles.create')}}" class="bg-principal w-full h-20 rounded-2xl flex justify-between items-center px-6 sm:px-12 shadow-md shadow-sombra hover:bg-blanco hover:text-principal text-blanco hover:ring-2 ring-principal">
                                 <p class="w-full  font-bold text-2xl hover:text-principal text-center">Agregar Nuevo Rol</p>
                                 <i class="ri-add-circle-line text-4xl hover:text-principal"></i>
                             </a>
@@ -38,7 +38,7 @@
                 </div>
             
                 <div class="scroll-container overflow-x-auto">
-                    <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-[480px] md:w-full">
+                    <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-full sm:w-full">
                         <div class="col-span-2 lg:pl-4">
                             ID
                         </div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     @foreach ($roles as $role)
-                    <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[480px] md:w-full">
+                    <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-full sm:w-full">
                         <div class="col-span-2 lg:pl-4 pr-4">
                             {{$role->id}}
                         </div>
@@ -76,11 +76,11 @@
                     @endforeach
             
                     @if($roles->isEmpty())
-                    <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[480px] md:w-full">
+                    <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-full sm:w-full">
                         <div class="col-span-12 text-center text-xl p-8">No hay roles creados</div>
                     </div>
                     @endif
-                    <div class="bg-blanco p-5 rounded-b-3xl w-[480px] md:w-full">
+                    <div class="bg-blanco p-5 rounded-b-3xl w-full sm:w-full">
             
                     </div>
                 </div>

@@ -23,7 +23,10 @@
                 <div class="bg-blanco h-20 rounded-2xl flex flex-row shadow-md shadow-sombra">
                     <input x-model="busqueda"
                         class="bg-claro h-18 rounded-xl border-0 m-[0.6rem] text-2xl placeholder:text-medioClaro pl-8 focus:ring-2 focus:ring-principal text-medio"
-                        placeholder="Ingrese el nombre del cliente">
+                        placeholder="Ingrese el nombre del cliente"
+                        @keydown.enter="(busqueda) ? close = true : close = false"
+                        wire:keydown.enter="buscar"
+                        >
 
                     <button class="bg-danger w-16 mr-[0.6rem]  my-[0.6rem] rounded-xl flex justify-center items-center hover:bg-blanco hover:text-danger text-blanco hover:ring-2 ring-danger" x-show="close" @click="busqueda='';close = false" wire:click="buscar">
                         <i class="ri-close-line text-4xl"></i>
@@ -68,7 +71,7 @@
     </div>
 
     <div class="scroll-container overflow-x-auto">
-        <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-[640px] md:w-full">
+        <div class="grid grid-flow-col grid-cols-12  text-medioClaro font-semibold mt-6 bg-oscuro p-5 rounded-t-3xl w-[640px] sm:w-full">
             <div class="col-span-1 lg:pl-4">
                 ID
             </div>
@@ -86,7 +89,7 @@
             </div>
         </div>
         @foreach ($cotizaciones as $cotizacion)
-        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] md:w-full">
+        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] sm:w-full">
             <div class="col-span-1 lg:pl-4 pr-4">
                 {{$cotizacion->id}}
             </div>
@@ -118,11 +121,11 @@
         @endforeach
 
         @if($cotizaciones->isEmpty())
-        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] md:w-full">
+        <div class="grid grid-flow-col grid-cols-12 bg-blanco text-oscuro p-5 border-claro border-b-[1px] w-[640px] sm:w-full">
             <div class="col-span-12 text-center text-xl p-8">No se encontraron resultados para tu búsqueda.</div>
         </div>
         @endif
-        <div class="bg-blanco p-5 rounded-b-3xl w-[640px] md:w-full">
+        <div class="bg-blanco p-5 rounded-b-3xl w-[640px] sm:w-full">
 
         </div>
     </div>

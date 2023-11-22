@@ -19,7 +19,7 @@
         >
 
             <div class="scroll-container overflow-x-auto">
-                <div class="grid grid-cols-12 bg-blanco p-4 text-start  text-lg w-full min-w-[480px] gap-4 ">
+                <div class="grid grid-cols-12 bg-blanco p-4 text-start  text-lg w-full min-w-[320px] gap-4 ">
 
                     <div class="col-span-12 text-medio font-normal text-xl px-6">
                         <p class="mb-4">Redacción del detalle</p>

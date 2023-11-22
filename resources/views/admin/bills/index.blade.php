@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-10/12 min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
+    <div class="w-full md:w-10/12 p-4 md:min-w-[480px] max-w-[1920px] h-full mx-auto bg-claro mt-2">
         @livewire('admin.cotizaciones.index')
     </div>
 

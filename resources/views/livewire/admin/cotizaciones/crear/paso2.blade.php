@@ -1,12 +1,11 @@
 {{-- BOTON --}}
-<button @click="(high2 == 'h-0') ? high2 = 'h-24' : high2 = 'h-0'"
-    class="bg-blanco mt-8 w-full p-4 py-3 rounded-t-3xl border-principal border-b-4 grid grid-cols-12 gap-4 shadow-md shadow-sombra"
+<button @click="(high2 == 'h-0') ? high2 = 'h-44' : high2 = 'h-0'"
+    class="bg-blanco mt-8 w-full pl-4 pr-6 sm:pr-4 sm:py-3 rounded-t-3xl border-principal border-b-4 grid grid-cols-12 gap-4 shadow-md shadow-sombra"
     >
     <p class="col-span-1 text-[3.5rem] font-semibold text-oscuro">2</p>
-
-    <div class="col-span-10 flex flex-col items-start justify-center my-auto">
-        <p class="text-2xl text-oscuro font-semibold">Agregar Producto(s)</p>
-        <p class="text-lg text-oscuro">Los productos o servicios a cotizar</p>
+    <div class="col-span-10 ml-3 flex flex-col items-start justify-center my-auto">
+        <p class="text-lg sm:text-2xl text-oscuro font-semibold">Agregar Producto(s)</p>
+        <p class="text-xs sm:text-lg text-oscuro">Los productos o servicios a cotizar</p>
         <x-input-error for="icon2"/>
     </div>
 
@@ -18,19 +17,21 @@
 {{-- FIN BOTON --}}
 
 <div
-class="bg-blanco rounded-b-3xl mb-4 overflow-hidden shadow-md shadow-sombra transition-all duration-500 ease-in-out"
+class="bg-blanco rounded-b-3xl mb-0 overflow-hidden shadow-md shadow-sombra transition-all duration-500 ease-in-out"
 :class="high2"
 >
 
-    <div class="w-full flex p-4">
-        <button class="bg-principal font-semibold text-blanco mr-4 text-lg rounded-full p-4 w-2/3 lg:w-1/2 mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-blanco" wire:click="$set('open2', true)">
-            AGREGAR PRODUCTO
+    <div class="w-full flex flex-col p-5 sm:p-4">
+        <button class="bg-principal mr-4 font-semibold text-blanco text-base sm:text-lg rounded-xl p-4 w-full mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-claro" wire:click="$set('open2', true)">
+            SELECCIONAR PRODUCTO
         </button>
 
         <button 
-        class="bg-medio font-semibold text-blanco text-lg rounded-full p-4 w-1/3 lg:w-1/2 mx-auto hover:ring-2 hover:ring-medio hover:text-medio hover:bg-blanco"
+        class="bg-blanco flex justify-between items-center font-semibold text-principal text-base sm:text-lg rounded-xl p-4 px-4 lg:px-8 w-full mx-auto mt-4 border-2 border-principal hover:ring-1 hover:ring-principal hover:bg-claro "
         @click="ver2= !ver2">
-            VER
+            <p class="w-full text-center text-principal"><span>VER</span> LISTA DE PRODUCTOS</p>
+            <i class="ri-box-3-line text-2xl font-light text-principal"></i>
+            <span class="ml-0 px-2 bg-danger rounded-full text-blanco">{{$numeroProductos}}</span>
         </button>       
     </div>
 
