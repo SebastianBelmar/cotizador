@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('giro')->nullable();
             $table->string('email')->nullable();
             $table->string('web')->nullable();
-            $table->unsignedInteger('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('horario')->nullable();

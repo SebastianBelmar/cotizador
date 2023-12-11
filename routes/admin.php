@@ -19,6 +19,10 @@ Route::resource('roles', RoleController::class)->middleware('can:admin.roles.ind
 Route::resource('productos', ProductoController::class)->middleware('can:admin.productos.index')->names('admin.productos');
 Route::resource('cotizaciones', CotizacioneController::class)->names('admin.cotizaciones');
 Route::resource('bills', BillController::class)->names('admin.bills');
+Route::get('/bills/pdf/{bill}', [BillController::class, 'mostrarPdf'])->name('admin.bills.pdf');
+
+Route::get('no-autorizado', [HomeController::class, 'index'])->middleware('can:unauthorized')->name('unauthorized');
+
 Route::resource('clientes', ClienteController::class)->names('admin.clientes');
 Route::resource('datos-empresas', DatosEmpresaController::class)->middleware('can:admin.datos-empresas.edit')->names('admin.datos-empresas');
 Route::get('detalles', [DetalleController::class, 'index'])->name('admin.detalles');

@@ -37,13 +37,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|numeric|unique:users,phone',
-            'password' => 'required|min:6',
+            'name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'phone' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    // Validar el formato del número de teléfono chileno
+                    if (!preg_match('/^(\+?56)?(?:0?[2-9])?(9[0-9]{8}|[2-8][0-9]{7})$/', $value)) {
+                        $fail('El teléfono ingresado no es un número de teléfono chileno válido. Ej: 569XXXXYYYY');
+                    }
+                },
+                "unique:users,phone",
+            ],
+            'password' => 'required|min:6|max:255',
         ]);
-        
+
         // Hasheo de la contraseña
         $userData = $request->all();
         $userData['password'] = Hash::make($request->input('password'));
@@ -66,13 +76,23 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'email' => "required|email|unique:users,email,$user->id",
-            'phone' => "required|numeric|unique:users,phone,$user->id",
-            'password' => 'required|min:6',
+            'name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => "required|email|unique:users,email,$user->id|max:255",
+            'phone' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    // Validar el formato del número de teléfono chileno
+                    if (!preg_match('/^(\+?56)?(?:0?[2-9])?(9[0-9]{8}|[2-8][0-9]{7})$/', $value)) {
+                        $fail('El teléfono ingresado no es un número de teléfono chileno válido. Ej: 569XXXXYYYY');
+                    }
+                },
+                "unique:users,phone,$user->id",
+            ],
+            'password' => 'required|min:6|max:255',
         ]);
-        
+
         // Hasheo de la contraseña
         $userData = $request->all();
         $userData['password'] = Hash::make($request->input('password'));
@@ -82,7 +102,7 @@ class UserController extends Controller
 
         if($user->id != 1) {
             $user->roles()->sync($request->roles);
-        } 
+        }
 
 
         return redirect()->route('admin.users.index', $user)->with('info', 'El usuario se actualizó correctamente');

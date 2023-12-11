@@ -101,16 +101,39 @@
             </div>
             <div class="col-span-2 lg:col-span-2 pr-4 flex flex-row">
                 @can('admin.clientes.edit')
-                <a href="{{route('admin.clientes.edit', $cliente)}}" class="hover:text-principal hover:blur-[0.6px] pb-1 mr-6"><i class="ri-edit-line text-xl"></i></a>
+                <a href="{{route('admin.clientes.edit', $cliente)}}" class="hover:text-principal transition-all duration-300 pb-1 mr-6"><i class="ri-edit-line text-xl"></i></a>
                 @endcan
 
                 @can('admin.clientes.destroy')
-                <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST" class="hover:blur-[0.6px]">
-                    @csrf
-                    @method('delete')
-                    <button type=submit class="hover:text-danger pb-1"><i class="ri-delete-bin-line text-xl"></i></button>
-                </form>
+                <div x-data="{open : false}" class="flex">
+
+                    <div x-show="open" class="mr-2 flex"
+                    x-trap.inert.noscroll="open"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                        <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST" class="">
+                            @csrf
+                            @method('delete')
+
+                            <button type=submit class="text-success pb-1 mr-2 flex justify-center items-center transition-all duration-300 hover:scale-105 ease-out"><i class="ri-check-line text-xl mr-2"></i><p class="hidden 2xl:flex">Eliminar</p></button>
+                        </form>
+                        <button class="text-danger pb-1 transition-all duration-300 hover:scale-125 ease-out" @click="open=false"><i class="ri-close-line text-xl"></i></button>
+                    </div>
+
+                    <button x-show="!open" class="hover:text-danger pb-1 transition-all duration-300" @click="open=!open"
+                    x-trap.inert.noscroll="open"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-0"
+                    x-transition:enter-end="opacity-0 translate-y-0 sm:scale-100"
+
+                    ><i  class="ri-delete-bin-line text-xl"></i></button>
+                </div>
                 @endcan
+
 
             </div>
 
@@ -134,6 +157,6 @@
         @else
             {{$clientes->links('vendor.pagination.tailwind')}}
         @endif
-    </div> 
+    </div>
 
 </div>

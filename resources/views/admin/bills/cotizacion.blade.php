@@ -79,14 +79,14 @@ input[type="number"] {
             </thead>
             <tbody>
                 <!-- Fila 1 -->
-                <tr >          
+                <tr >
                     <td class="sin-bordes" @if($ruta == 1) style="width: 120px;  padding: 10px 10px"@else style="width: 50px;"  @endif  rowspan="4" >
-                        <img  @if($ruta == 1) 
-                                src="{{ asset('icon/icon.jpg') }}" 
-                            @else 
-                                src="{{ public_path('icon/icon.jpg') }}" 
+                        <img  @if($ruta == 1)
+                                src="{{ asset('icon/icon.jpg') }}"
+                            @else
+                                src="{{ public_path('icon/icon.jpg') }}"
                                 width="100px"
-                            @endif  
+                            @endif
                             alt="fipe" style="float: top; padding: 13px 0px">
                     </td>
                     <td class="sin-bordes" rowspan="4"  style="width:59%; padding:0;">
@@ -120,10 +120,10 @@ input[type="number"] {
                 </tr>
             </tbody>
         </table>
-    
-    
+
+
         <table>
-            <thead>            
+            <thead>
             </thead>
             <tbody>
                 <tr>
@@ -138,13 +138,13 @@ input[type="number"] {
                         <strong>Email:</strong>  {{(isset($cliente->email) ) ? $cliente->email : ''}}<br>
                         <strong>Dirección:</strong> {{(isset($cliente->address) ) ? $cliente->address : ''}}<br>
                         <strong>Ciudad:</strong> {{(isset($cliente->city) ) ? $cliente->city : ''}}<br>
-                        <strong>Teléfono:</strong> {{(isset($cliente->phone) ) ? $cliente->phone : ''}}<br>  
+                        <strong>Teléfono:</strong> {{(isset($cliente->phone) ) ? $cliente->phone : ''}}<br>
                     </td>
                 </tr>
             </tbody>
         </table>
-    
-    
+
+
         <table style="font-size: 9px;">
             <thead>
                 <tr>
@@ -152,7 +152,7 @@ input[type="number"] {
                     <th style="width: 10px;">Nombre</th>
                     <th style="width: 50%;" >Descripción</th>
                     <th style="width: 10px;text-align: center;">Cantidad</th>
-                    <th style="width: 15px;text-align: center;">M<sup>2</sup></th>
+                    <th style="width: 30px;text-align: center;">M<sup>2</sup></th>
                     <th style="width: 80px; text-align: center;">Precio Unitario</th>
                     <th style="width: 10px;text-align: center;white-space: nowrap;">Total (Neto)</th>
                 </tr>
@@ -171,25 +171,25 @@ input[type="number"] {
                                 @if($item->quantity != 1)
                                     {{$item->quantity}} trozos
                                 @endif
-                            @else 
+                            @else
                                 {{$item->quantity}}
                             @endif
                         </td>
                         <td style="text-align: center; width: 10px;padding:5px 5px;">
                             @if($item->lenght)
                                 @if(($item->lenght*100)%100 == 0 && ($item->width*100)%100 == 0)
-                                    {{number_format($item->lenght*$item->width, 0, ',', '.')}}m<sup>2</sup><br>
-                                    ({{number_format($item->width, 0, ',', '.')}}x{{number_format($item->lenght, 0, ',', '.')}})
+                                    {{number_format($item->lenght*$item->width, 0, ',', ' ')}}m<sup>2</sup><br>
+                                    ({{number_format($item->width, 0, ',', ' ')}}x{{number_format($item->lenght, 0, ',', ' ')}})
                                 @else
-                                    {{number_format($item->lenght*$item->width, 2, ',', '.')}}m<sup>2</sup><br>
-                                    ({{number_format($item->width, 2, ',', '.')}}x{{number_format($item->lenght, 2, ',', '.')}})
+                                    {{number_format($item->lenght*$item->width, 2, ',', ' ')}}m<sup>2</sup><br>
+                                    ({{number_format($item->width, 2, ',', ' ')}}x{{number_format($item->lenght, 2, ',', ' ')}})
                                 @endif
-                            @else 
+                            @else
                                 --
                             @endif
                         </td>
-                        <td style="text-align: right;padding:1px 10px;">$ {{number_format($item->price/$item->quantity, 0, ',', '.')}}</td>
-                        <td style="text-align: right;padding:1px 10px;">$ {{number_format($item->price, 0, ',', '.')}}</td>
+                        <td style="text-align: right;padding:1px 10px;">$ {{number_format($item->total/$item->quantity, 0, ',', ' ')}}</td>
+                        <td style="text-align: right;padding:1px 10px;">$ {{number_format($item->total, 0, ',', ' ')}}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -197,31 +197,31 @@ input[type="number"] {
                 <tr>
                     <td colspan="4" class="sin-bordes"></td>
                     <td colspan="2" style="text-align: right;font-size: 9px; background-color: rgb(85, 85, 85); color:white;">Valor Neto:</td>
-                    <td id="valor-neto" style="text-align: right;font-weight: 300;">$ {{ number_format($total, 0, ',', '.')}}</td>
+                    <td id="valor-neto" style="text-align: right;font-weight: 300;">$ {{ number_format($total, 0, ',', ' ')}}</td>
                 </tr>
                 <tr>
                     <td colspan="4" class="sin-bordes"></td>
                     <td colspan="2" style="text-align: right;font-size: 9px; background-color: rgb(85, 85, 85); color:white;">IVA (19%):</td>
-                    <td id="iva" style="text-align: right;font-weight: 300;">$ {{number_format($total * 0.19 , 0, ',', '.')}}</td>
+                    <td id="iva" style="text-align: right;font-weight: 300;">$ {{number_format($total * 0.19 , 0, ',', ' ')}}</td>
                 </tr>
 
                 @if($bill->descuento != 0)
                     <tr>
                         <td colspan="4" class="sin-bordes"></td>
-                        <td colspan="2" style="text-align: right;font-size: 9px; background-color: rgb(85, 85, 85); color:white;">Descuento ({{number_format($bill->descuento, 0, ',', '.')}}%):</td>
-                        <td id="total-descuento" style="text-align: right;font-weight: 300;">{{ number_format($total*1.19*$bill->descuento*0.01, 0, ',', '.')}}</td>
+                        <td colspan="2" style="text-align: right;font-size: 9px; background-color: rgb(85, 85, 85); color:white;">Descuento ({{number_format($bill->descuento, 0, ',', ' ')}}%):</td>
+                        <td id="total-descuento" style="text-align: right;font-weight: 300;">{{ number_format($total*1.19*$bill->descuento*0.01, 0, ',', ' ')}}</td>
                     </tr>
                 @endif
                 <tr>
                     <td colspan="4" class="sin-bordes"></td>
                     <td colspan="2" style="text-align: right;font-size: 9px; background-color: rgb(50, 50, 50); color:white;">Total:</td>
-                    <td id="total" style="text-align: right;font-weight: 700;">$ {{ number_format($total*1.19*(1-$bill->descuento*0.01), 0, ',', '.')}} </td>
+                    <td id="total" style="text-align: right;font-weight: 700;">$ {{ number_format($total*1.19*(1-$bill->descuento*0.01), 0, ',', ' ')}} </td>
                 </tr>
             </tfoot>
         </table>
-    
+
         <table>
-            <thead>            
+            <thead>
             </thead>
             <tbody>
                 <tr>
@@ -242,7 +242,7 @@ input[type="number"] {
         </table>
 
         <table>
-            <thead>            
+            <thead>
             </thead>
             <tbody>
                 <tr>
@@ -276,7 +276,7 @@ input[type="number"] {
                     Rut: {{(isset($datos->rut) ) ? $datos->rut : ''}}
                 </td>
                 <td class="sin-bordes" >
-                    
+
                 </td>
                 <td class="sin-bordes" style="padding: 0px; text-align: center; border-top: 1px solid #000;">
                     <strong>Comprador</strong> <br>
@@ -286,13 +286,13 @@ input[type="number"] {
             </tr>
           </table>
 
-    
+
         <div style="text-align: center; margin: 50px 0px 0px 0px; font-size: 10px; ">
             Si usted tiene alguna duda sobre esta cotización por favor póngase en contacto con nosotros <br>
              Teléfono: {{(isset($datos->phone) ) ? $datos->phone : ''}} | E-mail: {{(isset($datos->email) ) ? $datos->email : ''}} <br>
             <span style="font-weight: bold; font-style: italic; ">Gracias por confiar en nosotros!</span>
         </div>
     </div>
-   
+
 </body>
 </html>

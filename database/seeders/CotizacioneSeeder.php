@@ -13,7 +13,7 @@ class CotizacioneSeeder extends Seeder
      */
     public function run(): void
     {
-        $cotizaciones = Cotizacione::factory(100)->create();
+        $cotizaciones = Cotizacione::factory(10)->create();
 
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccessPdf;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,11 @@ class BillController extends Controller
     {
         $this->middleware('can:admin.bills.destroy')->only('destroy');
         $this->middleware('can:admin.bills.index')->only('index');
+        $this->middleware('can:admin.bills.index')->only('mostrarPdf');
         $this->middleware('can:admin.bills.create')->only('create');
         $this->middleware('can:admin.bills.edit')->only('edit');
     }
- 
+
     public function index()
     {
         return view('admin.bills.index');
@@ -59,7 +61,7 @@ class BillController extends Controller
 
         foreach ($items as $item)
         {
-            $total += $item->price;
+            $total += $item->total;
         }
 
         return view('admin.bills.show', compact('bill', 'items', 'total', 'datos', 'cliente', 'detalles'));
@@ -106,7 +108,44 @@ class BillController extends Controller
 
         foreach ($items as $item)
         {
-            $total += $item->price;
+            $total += $item->total;
+        }
+
+        $pdf = PDF::loadView('admin.bills.cotizacion', [
+            'bill' => $bill,
+            'items' => $items,
+            'total' => $total,
+            'datos' => $datos,
+            'cliente' => $cliente,
+            'detalles' => $detalles,
+            'ruta' => 0
+        ]);
+
+        return $pdf->stream();
+    }
+
+    public function pdfTemporal(Cotizacione $bill)
+    {
+        $recurso = AccessPdf::findOrFail(1);
+
+        if ($recurso->haCaducado()) {
+            return redirect()->route('unauthorized');
+            return response('El recurso ha caducado.', 403);
+        }
+
+        $items = ItemProducto::where('cotizacione_id', $bill->id)->get();
+
+        $datos = DatosEmpresa::get()->first();
+
+        $cliente = Cliente::where('id', $bill->cliente_id)->first();
+
+        $detalles = $bill->detalles_termino;
+
+        $total = 0;
+
+        foreach ($items as $item)
+        {
+            $total += $item->total;
         }
 
         $pdf = PDF::loadView('admin.bills.cotizacion', [
@@ -136,7 +175,7 @@ class BillController extends Controller
 
         foreach ($items as $item)
         {
-            $total += $item->price;
+            $total += $item->total;
         }
 
         $pdf = PDF::loadView('admin.bills.cotizacion', [
@@ -166,7 +205,7 @@ class BillController extends Controller
 
         foreach ($items as $item)
         {
-            $total += $item->price;
+            $total += $item->total;
         }
 
         $pdf = PDF::loadView('admin.bills.cotizacion', [

@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('access_pdfs', function (Blueprint $table) {
             $table->id();
-            $table->integer('code');
-            $table->string('name');
-            $table->text('description');
-            $table->decimal('price', 15, 2);
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('access_pdfs');
     }
 };

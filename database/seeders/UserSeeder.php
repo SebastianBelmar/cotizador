@@ -44,6 +44,6 @@ class UserSeeder extends Seeder
             'current_team_id' => null,
         ])->assignRole('Vendedor');
 
-        User::factory(99)->create();
+        //User::factory(99)->create();
     }
 }

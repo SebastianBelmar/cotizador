@@ -58,8 +58,8 @@ class Editar extends Component
 
         $this->datosClientes = (isset($this->bill->cliente_id) && $this->bill->cliente_id) ? Cliente::find($this->cliente_id)->toArray() : '';
 
-        $items = ItemProducto::where('cotizacione_id', $this->bill->id)->get()->toArray();   
-        
+        $items = ItemProducto::where('cotizacione_id', $this->bill->id)->get()->toArray();
+
         foreach( $items as $indice =>  $item){
 
             $this->datosProductos[$indice]['codigo'] = $item['code'];
@@ -76,10 +76,10 @@ class Editar extends Component
         }
 
 
-        $this->detallesCotizacion = DetallesTermino::where('cotizacione_id', $this->bill->id)->where('status', 1)->get()->toArray();  
+        $this->detallesCotizacion = DetallesTermino::where('cotizacione_id', $this->bill->id)->where('status', 1)->get()->toArray();
 
-        $this->terminosCotizacion = DetallesTermino::where('cotizacione_id', $this->bill->id)->where('status', 2)->get()->toArray();  
-        
+        $this->terminosCotizacion = DetallesTermino::where('cotizacione_id', $this->bill->id)->where('status', 2)->get()->toArray();
+
 
         $this->conjuntoReglas = 'paso1';
 
@@ -97,19 +97,21 @@ class Editar extends Component
             ];
         } elseif($this->conjuntoReglas === 'paso2_1') {
             return [
-                'productoCodigo' => 'required|integer|exists:productos,code',
-                'productoPrecio' => "required",
-                'productoDescripcion' => "required",
-                'productoLargo' => "required|numeric",
-                'productoAncho' => "required|numeric",
-                'productoCantidad' => "required|integer",
+                'productoCodigo' => 'required|integer|exists:productos,code|max:2147483647|min:0',
+                'productoPrecio' => "required|numeric|max:999999999999.99",
+                'productoDescripcion' => "required|max:255",
+                'productoLargo' => "required|numeric|max:999999999999.99",
+                'productoAncho' => "required|numeric|max:999999999999.99",
+                'productoCantidad' => "required|integer|max:2147483647",
+                'productoTotal' => "required|numeric|max:999999999999.99",
             ];
         } elseif($this->conjuntoReglas === 'paso2_2') {
             return [
-                'productoCodigo' => 'required|integer|exists:productos,code',
-                'productoPrecio' => "required",
-                'productoDescripcion' => "required",
-                'productoCantidad' => "required|integer",
+                'productoCodigo' => 'required|integer|exists:productos,code|max:2147483647|min:0',
+                'productoPrecio' => "required|numeric|max:999999999999.99",
+                'productoDescripcion' => "required|max:255",
+                'productoCantidad' => "required|integer|max:2147483647",
+                'productoTotal' => "required|numeric|max:999999999999.99",
             ];
         } elseif($this->conjuntoReglas === 'paso3') {
             return [
@@ -169,13 +171,13 @@ class Editar extends Component
             'productoAncho.numeric' => 'El ancho del producto debe ser un número.',
             'productoCantidad.required' => 'La cantidad del producto es obligatoria.',
             'productoCantidad.integer' => 'La cantidad del producto debe ser un número entero.',
-            
+
             'fecha.required' => 'La fecha es obligatoria.',
-            
+
             'cliente_id.integer' => 'El ID debe ser un número entero.',
             'cliente_id.required' => 'El ID es obligatorio.',
             'cliente_id.exists' => 'El ID ingresado no existe',
-            
+
             'nuevoDetalle.required' => 'No se puede guardar un detalle vacío',
 
             'nuevoTermino.required' => 'No se puede guardar un término vacío',
@@ -197,24 +199,11 @@ class Editar extends Component
     public $status;
 
     public function seleccionarDetalles() {
-        // $descripcion = 'hola foca';
-        // $status = 1;
-
-        // DetallesTerminosGenerale::create([
-        //     'description' => $descripcion,
-        //     'status'=> $status
-        // ]);
-
-        // $array = DetallesTerminosGenerale::where('status', 1)->latest()->first()->toArray();
-        // $array['up'] = true;
-
-        // array_push($this->detallesGenerales, $array);
-
 
         $ArrayDetalles = [];
         foreach ($this->detallesGenerales as $detalle) {
             if($detalle['up'] == true) {
-                $objeto =  $detalle; 
+                $objeto =  $detalle;
                 $ArrayDetalles[] = $objeto;
             }
         }
@@ -239,6 +228,11 @@ class Editar extends Component
 
         $this->icon1=true; $this->open1=false;
 
+    }
+
+    public function open2(){
+        $this->open2 = true;
+        $this->reinicioVariables();
     }
 
     public function guardarInputProducto($codigo) {
@@ -417,7 +411,7 @@ class Editar extends Component
     }
 
     public function editarDetalleGuardar() {
-    
+
         $this->conjuntoReglas = 'paso3';
 
         $this->validate();
@@ -432,7 +426,7 @@ class Editar extends Component
     }
 
     public function editarTerminoGuardar() {
-    
+
         $this->conjuntoReglas = 'paso4';
 
         $this->validate();

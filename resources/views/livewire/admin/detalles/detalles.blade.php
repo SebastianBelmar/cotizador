@@ -23,7 +23,7 @@
     </div>
 
 
-    
+
     <div class="w-full flex lg:flex-row flex-col mt-8" x-data="{busqueda : @entangle('search').defer, close: false}">
 
 
@@ -106,13 +106,37 @@
 
             <div class="col-span-3 lg:col-span-3 pr-4 flex flex-row">
                 @can('admin.detalles.edit')
-                <button wire:click="editarDetalle('{{$detalle->id}}');" class="hover:text-principal hover:blur-[0.6px] pb-1 mr-6"><i class="ri-edit-line text-xl"></i></button>
+                <button wire:click="editarDetalle('{{$detalle->id}}');" class="hover:text-principal transition-all duration-300 pb-1 mr-6"><i class="ri-edit-line text-xl"></i></button>
                 @endcan
+
 
                 @can('admin.detalles.destroy')
-                    <button wire:click="borrarDetalle('{{$detalle->id}}');"  type=submit class="hover:text-danger pb-1"><i class="ri-delete-bin-line text-xl"></i></button>
+                <div x-data="{open : false}" class="flex">
 
+                    <div x-show="open" class="mr-2 flex"
+                    x-trap.inert.noscroll="open"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+
+
+                            <button wire:click="borrarDetalle('{{$detalle->id}}');" @click="open=false" class="text-success pb-1 mr-2 flex justify-center items-center transition-all duration-300 hover:scale-105 ease-out"><i class="ri-check-line text-xl mr-2"></i><p class="hidden 2xl:flex">Eliminar</p></button>
+                        <button class="text-danger pb-1 transition-all duration-300 hover:scale-125 ease-out" @click="open=false"><i class="ri-close-line text-xl"></i></button>
+                    </div>
+
+                    <button x-show="!open" class="hover:text-danger pb-1 transition-all duration-300" @click="open=!open"
+                    x-trap.inert.noscroll="open"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-0"
+                    x-transition:enter-end="opacity-0 translate-y-0 sm:scale-100"
+
+                    ><i  class="ri-delete-bin-line text-xl"></i></button>
+                </div>
                 @endcan
+
 
             </div>
 
@@ -136,7 +160,7 @@
         @else
             {{$detalles->links('vendor.pagination.tailwind')}}
         @endif
-    </div> 
+    </div>
 
 
     @include("livewire.admin.detalles.crear")

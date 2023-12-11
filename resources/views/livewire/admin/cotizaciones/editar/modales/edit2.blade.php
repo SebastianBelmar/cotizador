@@ -17,7 +17,7 @@
             <div x-data="{productoCodigo: @entangle('productoCodigo'),  productoDescripcion: @entangle('productoDescripcion'), productoPrecio: @entangle('productoPrecio'), productoLargo: @entangle('productoLargo').defer, productoAncho: @entangle('productoAncho').defer, productoCantidad: @entangle('productoCantidad').defer}">
 
                 <div class="mt-4">
-                    <p class="text-lg text-oscuro">Seleccionar Producto por Código</p>
+                    <button class="text-lg text-oscuro cursor-text" style="user-select: text;">Seleccionar Producto por Código</button>
 
                     @include('livewire.admin.cotizaciones.crear.inputs.input2')
 
@@ -47,8 +47,8 @@
                 <div class="mt-4">
                     <p class="text-lg text-oscuro">Descripción</p>
 
-                    <input 
-                        class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg" 
+                    <input
+                        class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
                         type="text"
                         wire:model='productoDescripcion'
                         placeholder="Ingrese descripción del producto"
@@ -60,18 +60,18 @@
                     <label class="text-oscuro text-lg">Calcular precio mediante:</label>
                     <div class="flex ">
                         <label class="mr-6 flex items-center">
-                            <input 
+                            <input
                                 class="bg-blanco mr-2 border-2 border-medioClaro hover:border-2 hover:border-blanco custom-radio hover:ring-2 focus:ring-principal hover:ring-principal hover:bg-principal active:ring-principal text-principal hover:text-principal"
-                                type="radio" 
-                                wire:model="opcion" 
+                                type="radio"
+                                wire:model="opcion"
                                 value="1">
                             <p class="text-oscuro">Área</p>
                         </label>
                         <label class="flex items-center">
-                            <input 
+                            <input
                             class="bg-blanco mr-2 border-2 border-medioClaro hover:border-2 hover:border-blanco custom-radio hover:ring-2 focus:ring-principal hover:ring-principal hover:bg-principal active:ring-principal text-principal hover:text-principal"
-                            type="radio" 
-                            wire:model="opcion" 
+                            type="radio"
+                            wire:model="opcion"
                             value="2">
                             <p class="text-oscuro">Unidad</p>
                         </label>
@@ -84,8 +84,8 @@
 
                                 <x-input-error for="productoLargo"/>
 
-                                <input 
-                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg" 
+                                <input
+                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
                                     type="number"
                                     wire:model="productoLargo"
                                     placeholder="Ingrese largo en metros"
@@ -97,8 +97,8 @@
 
                                 <x-input-error for="productoAncho"/>
 
-                                <input 
-                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg" 
+                                <input
+                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
                                     type="number"
                                     wire:model="productoAncho"
                                     placeholder="Ingrese ancho en metros"
@@ -112,8 +112,8 @@
 
                                 <x-input-error for="productoCantidad"/>
 
-                                <input 
-                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg" 
+                                <input
+                                    class="rounded-lg bg-claro border-0 ring-2 ring-medioClaro focus:ring-principal focus:border-principal focus:ring-2 focus:border-1 p-4 mt-1 placeholder:text-lg"
                                     type="number"
                                     wire:model="productoCantidad"
                                     placeholder="Ingrese la cantidad"
@@ -126,6 +126,7 @@
                                     <p class="text-4xl text-oscuro font-bold" x-text="'$'+(
                                         (opcion == 1) ? ((productoCantidad * productoAncho * productoLargo * productoPrecio) ? productoTotal = (productoCantidad * productoAncho * productoLargo * productoPrecio).toFixed(0) : '' ) : ((productoCantidad *  productoPrecio) ? productoTotal = (productoCantidad  * productoPrecio).toFixed(0) : ''))"></p>
                                 </div>
+                                <x-input-error for="productoTotal"/>
                             </div>
                         </div>
                     </div>

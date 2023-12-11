@@ -33,7 +33,7 @@ class Terminos extends Component
     public function rules()
     {
         return [
-            'nuevoTermino' => 'required',
+            'nuevoTermino' => 'required|max:65535',
         ];
     }
 

@@ -19,6 +19,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    // Validar el formato del número de teléfono chileno
+                    if (!preg_match('/^(\+?56)?(?:0?[2-9])?(9[0-9]{8}|[2-8][0-9]{7})$/', $value)) {
+                        $fail('El teléfono ingresado no es un número de teléfono chileno válido. Ej: 569XXXXYYYY');
+                    }
+                },
+                "unique:users,phone,$user->id",
+            ],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -33,6 +45,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'last_name' => $input['last_name'],
+                'phone' => $input['phone'],
                 'email' => $input['email'],
             ])->save();
         }

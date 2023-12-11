@@ -37,15 +37,25 @@ class DatosEmpresaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'rut' => 'required',
-            'giro' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'email' => 'required|email|unique:datos_empresas',
-            'website' => 'required|unique:datos_empresas',
-            'phone' => 'required|integer',
-            'office_hours' => 'required',
+            'name' => 'required|max:255',
+            'rut' => 'required|max:255',
+            'giro' => 'required|max:255',
+            'address' => 'required|max:255',
+            'city' => 'required|max:255',
+            'email' => 'required|email|unique:datos_empresas|max:255',
+            'website' => 'required|unique:datos_empresas|max:255',
+            'phone' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    // Validar el formato del número de teléfono chileno
+                    if (!preg_match('/^(\+?56)?(?:0?[2-9])?(9[0-9]{8}|[2-8][0-9]{7})$/', $value)) {
+                        $fail('El teléfono ingresado no es un número de teléfono chileno válido. Ej: 569XXXXYYYY');
+                    }
+                },
+            ],
+
+            'office_hours' => 'required|max:255',
         ]);
 
         $datosEmpresa = DatosEmpresa::create($request->all());
@@ -75,15 +85,24 @@ class DatosEmpresaController extends Controller
     public function update(Request $request, DatosEmpresa $datosEmpresa)
     {
         $request->validate([
-            'name' => 'required',
-            'rut' => 'required',
-            'giro' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'email' => "required|email|unique:datos_empresas,email,$datosEmpresa->id",
-            'website' => "required|unique:datos_empresas,website,$datosEmpresa->id",
-            'phone' => 'required|integer',
-            'office_hours' => 'required',
+            'name' => 'required|max:255',
+            'rut' => 'required|max:255',
+            'giro' => 'required|max:255',
+            'address' => 'required|max:255',
+            'city' => 'required|max:255',
+            'email' => "required|email|unique:datos_empresas,email,$datosEmpresa->id|max:255",
+            'website' => "required|unique:datos_empresas,website,$datosEmpresa->id|max:255",
+            'phone' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    // Validar el formato del número de teléfono chileno
+                    if (!preg_match('/^(\+?56)?(?:0?[2-9])?(9[0-9]{8}|[2-8][0-9]{7})$/', $value)) {
+                        $fail('El teléfono ingresado no es un número de teléfono chileno válido. Ej: 569XXXXYYYY');
+                    }
+                },
+            ],
+            'office_hours' => 'required|max:255',
         ]);
 
         $datosEmpresa->update($request->all());

@@ -22,7 +22,7 @@ class="bg-blanco rounded-b-3xl mb-4 overflow-hidden shadow-md shadow-sombra tran
 >
 
 <div class="w-full flex flex-col p-5 sm:p-4">
-    <button class="bg-principal mr-4 font-semibold text-blanco text-base sm:text-lg rounded-xl p-4 w-full mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-claro" wire:click="$set('open2', true)">
+    <button class="bg-principal mr-4 font-semibold text-blanco text-base sm:text-lg rounded-xl p-4 w-full mx-auto hover:ring-2 hover:ring-principal hover:text-principal hover:bg-claro" wire:click="open2">
         SELECCIONAR PRODUCTO
     </button>
 

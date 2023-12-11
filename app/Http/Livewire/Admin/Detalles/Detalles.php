@@ -34,7 +34,7 @@ class Detalles extends Component
     public function rules()
     {
         return [
-            'nuevoDetalle' => 'required',
+            'nuevoDetalle' => 'required|max:65535',
         ];
     }
 

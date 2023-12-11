@@ -83,11 +83,11 @@
             </div>
         </div>
 
-        <div class="relative ml-3 z-40" x-data="{ open: false }">
+        <div class="relative ml-3" x-data="{ open: false }">
             <div>
                 <button x-on:click="open = true" type="button" class="flex rounded-full" id="user-menu-button"
                     aria-expanded="false" aria-haspopup="true">
-                    <i class="h-12 w-12 bg-claro text-principal text-[24px] justify-center items-center rounded-full border-principal border-[1px] ri-user-line py-1 z-40"></i>
+                    <i class="h-12 w-12 bg-claro text-principal text-[24px] justify-center items-center rounded-full border-principal border-[1px] ri-user-line py-1"></i>
                 </button>
             </div>
 
@@ -188,15 +188,15 @@
                     {{-- ADMINISTRADOR --}}
                     @can('admin.productos.index')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
-                    @elsecan('admin.users.index') 
+                    @elsecan('admin.users.index')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
-                    @elsecan('admin.roles.index') 
+                    @elsecan('admin.roles.index')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
-                    @elsecan('admin.datos-empresas.edit') 
+                    @elsecan('admin.datos-empresas.edit')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
-                    @elsecan('admin.detalles.index') 
+                    @elsecan('admin.detalles.index')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
-                    @elsecan('admin.terminos.index') 
+                    @elsecan('admin.terminos.index')
                     <p class="text-medioClaro text-2xl mt-6 mb-4 font-bold"><i class="ri-admin-line mr-4"></i>ADMINISTRADOR</p>
                     @else
                         <div class="h-80"></div>
@@ -215,7 +215,7 @@
                                     class="ri-arrow-right-up-line text-3xl"></i>
                             </a>
                         @endcan
-                        
+
                         @can('admin.detalles.index')
                         <a href="{{  route('admin.detalles') }}"
                             class="mb-1 py-3 px-5 text-oscuro hover:rounded-md text-lg font-medium hover:bg-principal hover:text-blanco flex justify-between items-center"

@@ -39,10 +39,19 @@ class ProductoController extends Controller
     {
 
         $request->validate([
-            'code' => 'required|integer|unique:productos,code',
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'code' => ['required', 'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strpos($value, '.') !== false) {
+                        $fail('El código no debe ser decimal.');
+                    }
+                },
+                'unique:productos,code',
+                'max:2147483647',
+                'min:0'
+            ],
+            'name' => 'required|max:255',
+            'description' => 'required|max:65535',
+            'price' => 'required|numeric|max:999999999999.99',
         ], [
             'code.required' => 'El código es obligatorio.',
             'code.integer' => 'El código debe ser un número entero.',
@@ -51,6 +60,7 @@ class ProductoController extends Controller
             'description.required' => 'La descripción es obligatoria.',
             'price.required' => 'El precio es obligatorio.',
             'price.numeric' => 'El precio debe ser un número.',
+            'price.max' => 'El precio no debe ser mayor que 999999999999.',
         ]);
 
         $producto = Producto::create($request->all());
@@ -77,10 +87,19 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $request->validate([
-            'code' => "required|numeric|unique:productos,code,$producto->id",
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'code' => ['required', 'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strpos($value, '.') !== false) {
+                        $fail('El código no debe ser decimal.');
+                    }
+                },
+                "unique:productos,code,$producto->id",
+                'max:9223372036854775807',
+                'min:0'
+            ],
+            'name' => 'required|max:255',
+            'description' => 'required|max:65535',
+            'price' => 'required|numeric|max:999999999999.99',
         ], [
             'code.required' => 'El código es obligatorio.',
             'code.integer' => 'El código debe ser un número entero.',
@@ -89,6 +108,7 @@ class ProductoController extends Controller
             'description.required' => 'La descripción es obligatoria.',
             'price.required' => 'El precio es obligatorio.',
             'price.numeric' => 'El precio debe ser un número.',
+            'price.max' => 'El precio no debe ser mayor que 999999999999.',
         ]);
 
         $producto->update($request->all());

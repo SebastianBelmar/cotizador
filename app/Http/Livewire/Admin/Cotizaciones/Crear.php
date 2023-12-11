@@ -40,19 +40,39 @@ class Crear extends Component
             ];
         } elseif($this->conjuntoReglas === 'paso2_1') {
             return [
-                'productoCodigo' => 'required|integer|exists:productos,code',
-                'productoPrecio' => "required",
-                'productoDescripcion' => "required",
-                'productoLargo' => "required|numeric",
-                'productoAncho' => "required|numeric",
-                'productoCantidad' => "required|integer",
+                'productoCodigo' => ['required', 'numeric',
+                    function ($attribute, $value, $fail) {
+                        if (strpos($value, '.') !== false) {
+                            $fail('El código no debe ser decimal.');
+                        }
+                    },
+                    'exists:productos,code',
+                    'max:2147483647',
+                    'min:0'
+                ],
+                'productoPrecio' => "required|numeric|max:999999999999.99",
+                'productoDescripcion' => "required|max:255",
+                'productoLargo' => "required|numeric|max:999999999999.99",
+                'productoAncho' => "required|numeric|max:999999999999.99",
+                'productoCantidad' => "required|integer|max:2147483647",
+                'productoTotal' => "required|numeric|max:999999999999.99",
             ];
         } elseif($this->conjuntoReglas === 'paso2_2') {
             return [
-                'productoCodigo' => 'required|integer|exists:productos,code',
-                'productoPrecio' => "required",
-                'productoDescripcion' => "required",
-                'productoCantidad' => "required|integer",
+                'productoCodigo' => ['required', 'numeric',
+                    function ($attribute, $value, $fail) {
+                        if (strpos($value, '.') !== false) {
+                            $fail('El código no debe ser decimal.');
+                        }
+                    },
+                    'exists:productos,code',
+                    'max:2147483647',
+                    'min:0'
+                ],
+                'productoPrecio' => "required|numeric|max:999999999999.99",
+                'productoDescripcion' => "required|max:255",
+                'productoCantidad' => "required|integer|max:2147483647",
+                'productoTotal' => "required|numeric|max:999999999999.99",
             ];
         } elseif($this->conjuntoReglas === 'paso3') {
             return [
@@ -111,13 +131,13 @@ class Crear extends Component
             'productoAncho.numeric' => 'El ancho del producto debe ser un número.',
             'productoCantidad.required' => 'La cantidad del producto es obligatoria.',
             'productoCantidad.integer' => 'La cantidad del producto debe ser un número entero.',
-            
+
             'fecha.required' => 'La fecha es obligatoria.',
-            
+
             'cliente_id.integer' => 'El ID debe ser un número entero.',
             'cliente_id.required' => 'El ID es obligatorio.',
             'cliente_id.exists' => 'El ID ingresado no existe',
-            
+
             'nuevoDetalle.required' => 'No se puede guardar un detalle vacío',
 
             'nuevoTermino.required' => 'No se puede guardar un término vacío',
@@ -154,24 +174,11 @@ class Crear extends Component
     public $status;
 
     public function seleccionarDetalles() {
-        // $descripcion = 'hola foca';
-        // $status = 1;
-
-        // DetallesTerminosGenerale::create([
-        //     'description' => $descripcion,
-        //     'status'=> $status
-        // ]);
-
-        // $array = DetallesTerminosGenerale::where('status', 1)->latest()->first()->toArray();
-        // $array['up'] = true;
-
-        // array_push($this->detallesGenerales, $array);
-
 
         $ArrayDetalles = [];
         foreach ($this->detallesGenerales as $detalle) {
             if($detalle['up'] == true) {
-                $objeto =  $detalle; 
+                $objeto =  $detalle;
                 $ArrayDetalles[] = $objeto;
             }
         }
@@ -378,7 +385,7 @@ class Crear extends Component
     }
 
     public function editarDetalleGuardar() {
-    
+
         $this->conjuntoReglas = 'paso3';
 
         $this->validate();
@@ -393,7 +400,7 @@ class Crear extends Component
     }
 
     public function editarTerminoGuardar() {
-    
+
         $this->conjuntoReglas = 'paso4';
 
         $this->validate();

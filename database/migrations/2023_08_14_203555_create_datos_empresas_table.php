@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('website');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->string('email');
             $table->string('office_hours');
 
